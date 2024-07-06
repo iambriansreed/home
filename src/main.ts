@@ -223,7 +223,6 @@ async function main() {
 
         $('[data-start-quiz]', recruiters)!.addEventListener('click', function () {
             setState('quiz');
-            document.body.classList.add('hide-nav');
             window.location.hash = '#recruiters';
         });
 
