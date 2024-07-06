@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/b.svg" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
+        <title>I am Brian</title>
+    </head>
+
+    <body>
+        <div class="loading">
+            <div class="loader">
+                <div class="blob"></div>
+            </div>
+        </div>
+        <div class="sections" style="display: none">
+            <!-- <div id="background" tabindex="-1"></div> -->
+            <nav tabindex="1">
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#recruiters">Recruiters</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <section id="welcome">
+                <h1>
+                    <span class="text-i-am">
+                        <span class="text-i">i</span>
+                        <span class="text-am">&nbsp;am</span>
+                    </span>
+                    <span class="text-brian"><span><%- 'Brian'.split('').join('</span><span>')%></span></span>
+                </h1>
+                <div class="subtitle fade-right">
+                    <ul>
+                        <li>Web Designer</li>
+                        <li>Graphic Designer</li>
+                        <li>Web Application Developer</li>
+                        <li>Full Stack Developer</li>
+                        <li>Senior Software Engineer</li>
+                        <li>Developer Advisor</li>
+                        <li>Senior Front End Engineer</li>
+                        <li>Senior Technical Architect</li>
+                        <li>Senior UX Engineer</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="skills">
+                <h2>Skills</h2>
+                <main>
+                    <article>
+                        <p>
+                            I am a full stack, frontend focused, UX engineer with over 15 years of experience
+                            designing and developing software.
+                        </p>
+                        <p>
+                            Lately I have been using mostly React, Angular, TypeScript, Node, and GraphQL and
+                            am happy to take roles that use other technologies.
+                        </p>
+                        <p>
+                            <a href="#skills" data-type="years">Years</a> /
+                            <a href="#skills" data-type="progress">Advancement</a> /
+                            <a href="#skills" data-type="title">A - Z</a>
+                        </p>
+                    </article>
+                    <ul>
+                        <% for(const skill of skills) { %>
+                        <li
+                            data-years="<%= skill.years %>"
+                            data-title="<%= skill.title %>"
+                            data-progress="<%= skill.progress %>"
+                        >
+                            <h3>
+                                <span><%= skill.title %></span
+                                ><span><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span>
+                            </h3>
+                            <div>
+                                <%- `
+                                <div style="width: ${skill.progress}%"></div>
+                                ` %>
+                            </div>
+                        </li>
+                        <% } %>
+                    </ul>
+                </main>
+            </section>
+            <section id="projects">
+                <h2>Side Projects</h2>
+                <main>
+                    <article class="intro">
+                        <p>
+                            The following are some or my the side projects I work on to demonstrate
+                            capability, create some rudimentary AI from scratch, get more familiar with
+                            sockets, or play wordle whenever I want.
+                        </p>
+                    </article>
+                    <% for(const project of projects) { %>
+                    <article>
+                        <h3><%= project.title %></h3>
+                        <p><%= project.description %></p>
+                        <p><small><%- project.skills.join(', ') %></small></p>
+                        <p class="sources">
+                            <% for(const source of project.sources) { %>
+                            <span> / </span>
+                            <a href="<%= source.url %>"><%- svg.github%> <%= source.title %></a>
+                            <% } %>
+                        </p>
+                    </article>
+                    <% } %>
+                </main>
+            </section>
+            <section id="contact">
+                <h2>Contact</h2>
+                <main>
+                    <article>
+                        <p>
+                            Find me on <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a> or
+                            send me a message below.<br />Make sure to include your email address anywhere in
+                            the message.
+                        </p>
+                    </article>
+                    <form method="dialog" class="contact-form">
+                        <div class="success">
+                            <h3>Thanks for contacting me. I'll get back to you as soon as possible.</h3>
+                        </div>
+                        <fieldset>
+                            <textarea
+                                placeholder="I have been trying to reach you about your car's extended warranty."
+                            ></textarea>
+                            <p class="error-description">
+                                <span class="active">Not seeing an email address above.</span>
+                                <span>Please include an email address.</span>
+                                <span>Include an Email address in your message please.</span>
+                            </p>
+                        </fieldset>
+                        <p class="found-email">Wow. <span></span> is a nice email address.</p>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </main>
+            </section>
+            <section id="recruiters" data-state="intro">
+                <h2>Recruiters</h2>
+
+                <main>
+                    <article class="intro">
+                        <p>
+                            Hello there! If you think I might be a good fit for a position you are trying to
+                            fill please take the following quiz. I have some basic questions I'd like you to
+                            answer before you react out so we don't waste your time or mine. Thanks!
+                        </p>
+
+                        <p>
+                            <button type="button" data-start-quiz>Start Quiz</button>
+                        </p>
+                    </article>
+
+                    <form method="dialog" class="quiz">
+                        <% for(const question of questions) { %>
+                        <fieldset
+                            id="question-<%= question.id %>"
+                            data-question-name="<%= question.id %>"
+                            class="question <%= (question.id === 'role' ? 'active' : '') %>"
+                        >
+                            <h3><%= question.title %></h3>
+                            <div class="options">
+                                <% let count = 0; for(const answer of question.answers) { const labelId =
+                                question.id + (answer.failReason ? '-fail' : '-' + (++count)) ; %>
+                                <label for="<%= labelId %>">
+                                    <input
+                                        type="radio"
+                                        name="<%= question.id %>"
+                                        value="<%= answer.failReason ? 'fail' : answer.title %>"
+                                        id="<%= labelId %>"
+                                        required
+                                    />
+                                    <%= answer.title %>
+                                </label>
+                                <% if(answer.failReason){%>
+                                <p class="fail-reason"><%= answer.failReason %></p>
+                                <% } } %>
+                            </div>
+                            <p class="error-description">This is a required field.</p>
+                        </fieldset>
+                        <% } %>
+                        <div>
+                            <button type="submit" class="check-results">Check Results</button>
+                        </div>
+                    </form>
+
+                    <article class="quiz-fail">
+                        <h3>Oh no!</h3>
+                        <p>
+                            Thank you for taking the time to fill out the form but I don't think this
+                            opportunity is a good fit.
+                        </p>
+                        <p>
+                            If you think you made a mistake, scroll up and look for the
+                            <span style="color: tomato">messages in red</span>.<br />If you still think this
+                            might work out, contact me on
+                            <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
+                        </p>
+                        <div class="image">
+                            <img
+                                src="https://media.giphy.com/media/f72BA6kQXT4uQ/giphy.gif"
+                                alt="power rangers with a headache"
+                                width="320"
+                            />
+                        </div>
+                    </article>
+
+                    <article class="quiz-pass">
+                        <h3>Awesome! This might be a good fit!</h3>
+                        <form method="dialog" class="send">
+                            <fieldset class="email" id="send-email">
+                                <label for="send-email"
+                                    >One last step. Add your email and send me the results.</label
+                                >
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    name="send-email"
+                                    required
+                                    value="me@iambrian.com"
+                                />
+                                <p class="error-description">That email address doesn't seem right.</p>
+                            </fieldset>
+                            <button type="submit">Send Results</button>
+                        </form>
+                    </article>
+
+                    <article class="quiz-sent">
+                        <h3>Thanks for sending the quiz results!</h3>
+                        <p>
+                            I will review the results and get back to you as soon as possible. If you have any
+                            questions in the meantime, feel free to reach out on
+                            <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
+                        </p>
+                    </article>
+                </main>
+            </section>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
