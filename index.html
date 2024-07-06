@@ -16,8 +16,53 @@
         />
         <meta name="version" content="1.0.0" />
         <title>Brian S. Reed - UX Engineer</title>
+        <style>
+            body {
+                background-color: rgba(36, 36, 36, 1);
+            }
+            .loading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                background-color: var(--background);
+                color: var(--foreground);
+            }
+            .loader {
+                width: 100px;
+                height: 100px;
+                position: relative;
+            }
+            .loader .blob {
+                width: 5rem;
+                height: 5rem;
+                background: linear-gradient(135deg, #1263ab, #67afef);
+                border-radius: 50%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 20px #0d497d;
+                animation: morph 2s linear infinite;
+            }
+            @keyframes morph {
+                0%,
+                to {
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+                33% {
+                    border-radius: 30% 70% 70% 30%/30% 29% 71% 70%;
+                    transform: translate(-50%, -50%) rotate(90deg) scale(1.2);
+                }
+                66% {
+                    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+                    transform: translate(-50%, -50%) rotate(180deg) scale(0.8);
+                }
+            }
+        </style>
     </head>
-
     <body>
         <div class="loading">
             <div class="loader">
@@ -59,32 +104,35 @@
                 <main>
                     <article>
                         <p>
-                            Hello, I'm Brian, a seasoned autodidactic Software Engineer with a drive for
-                            solving problems through well-thought-out engineering and empathetic UX design.
-                            Even though I have been slinging code for almost 20 years, I am always learning
-                            and growing.
+                            Hi, I'm Brian, a self-taught Software Engineer passionate about solving problems
+                            with thoughtful engineering and user-centric design. With nearly 20 years of
+                            coding experience, I continue to learn and evolve.
                         </p>
                         <p>
-                            Lately I have been using mostly React, Angular, TypeScript, Node, and GraphQL and
-                            am happy to take roles that use other technologies.
+                            Recently, I've been focused on React, TypeScript, Node.js, GraphQL, SCSS, and
+                            Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
+                            other technologies.
                         </p>
-                        <p>
+                        <!-- <p>
                             <a href="#skills" data-type="years">Years</a> /
                             <a href="#skills" data-type="progress">Advancement</a> /
                             <a href="#skills" data-type="title">A - Z</a>
-                        </p>
+                        </p> -->
                     </article>
+                    <% for(const skillLevel of skillLevels) { %>
+                    <h3><%= skillLevel.title %></h3>
                     <ul>
-                        <% for(const skill of skills) { %>
+                        <% for(const skill of skills.filter(s => s.progress > skillLevel.range[0] &&
+                        s.progress <= skillLevel.range[1] )) { %>
                         <li
                             data-years="<%= skill.years %>"
                             data-title="<%= skill.title %>"
                             data-progress="<%= skill.progress %>"
                         >
-                            <h3>
+                            <h4>
                                 <span><%= skill.title %></span
                                 ><span><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span>
-                            </h3>
+                            </h4>
                             <div>
                                 <%- `
                                 <div style="width: ${skill.progress}%"></div>
@@ -93,6 +141,7 @@
                         </li>
                         <% } %>
                     </ul>
+                    <% } %>
                 </main>
             </section>
             <section id="projects">
@@ -148,7 +197,9 @@
                             </p>
                         </fieldset>
                         <p class="found-email">Wow. <span></span> is a nice email address.</p>
-                        <button type="submit">Send Message</button>
+                        <footer>
+                            <button type="submit">Send Message</button>
+                        </footer>
                     </form>
                 </main>
             </section>
@@ -196,9 +247,9 @@
                             <p class="error-description">This is a required field.</p>
                         </fieldset>
                         <% } %>
-                        <div>
+                        <footer>
                             <button type="submit" class="check-results">Check Results</button>
-                        </div>
+                        </footer>
                     </form>
 
                     <article class="quiz-fail">
@@ -213,13 +264,6 @@
                             might work out, contact me on
                             <a target="_blank" href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
                         </p>
-                        <div class="image">
-                            <img
-                                src="https://media.giphy.com/media/f72BA6kQXT4uQ/giphy.gif"
-                                alt="power rangers with a headache"
-                                width="320"
-                            />
-                        </div>
                     </article>
 
                     <article class="quiz-pass">
@@ -229,16 +273,10 @@
                                 <label for="send-email"
                                     >One last step. Add your email and send me the results.</label
                                 >
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    name="send-email"
-                                    required
-                                    value="me@iambrian.com"
-                                />
+                                <input type="email" placeholder="Email" name="send-email" required />
                                 <p class="error-description">That email address doesn't seem right.</p>
                             </fieldset>
-                            <button type="submit">Send Results</button>
+                            <footer><button type="submit">Send Results</button></footer>
                         </form>
                     </article>
 

@@ -4,7 +4,21 @@ import data from './data';
 
 export const isTouchDevice = 'ontouchstart' in window;
 
+[
+    { weight: 50, url: 'Metropolis-Thin.woff2' },
+    { weight: 200, url: 'Metropolis-Light.woff2' },
+    { weight: 500, url: 'Metropolis-SemiBold.woff2' },
+].forEach(async ({ url, weight }) =>
+    document.fonts.add(
+        await new FontFace('base', `url(/fonts/${url})`, {
+            weight: weight.toString(),
+        }).load()
+    )
+);
+
 async function main() {
+    await document.fonts.ready;
+
     // if (window.location.hash !== '#recruiters') window.location.hash = '';
 
     $('body > .loading')!.remove();
@@ -103,49 +117,6 @@ async function main() {
                 body: JSON.stringify(data),
             }).then((response) => response.json()),
         ]).then(([, response]) => response);
-    }
-
-    // skills
-    {
-        const sortLinks = $$('#skills a')!;
-        const list = $('#skills ul')!;
-        const listItems = $$('li', list).map((node) => ({
-            node,
-            title: node.dataset.title || '',
-            progress: +node.dataset.progress!,
-            years: +node.dataset.years!,
-        }));
-
-        const sortsDefault = {
-            title: false,
-            progress: true,
-            years: true,
-        };
-
-        let sorts = { ...sortsDefault };
-
-        sortLinks.forEach((link) => {
-            const sortType: keyof typeof sortsDefault = link.dataset.type as any;
-
-            link.addEventListener('click', () => {
-                sorts = { ...sortsDefault, [sortType]: !sorts[sortType] };
-
-                list.append(
-                    ...listItems
-                        .sort((a, b) => {
-                            return (
-                                sorts[sortType]
-                                    ? //
-                                      a[sortType] > b[sortType]
-                                    : a[sortType] < b[sortType]
-                            )
-                                ? 1
-                                : -1;
-                        })
-                        .map(({ node }) => node)
-                );
-            });
-        });
     }
 
     {
@@ -299,8 +270,12 @@ async function main() {
     return Promise.resolve();
 }
 
-window.addEventListener('load', () => {
-    setTimeout(async () => {
-        await main();
-    }, 2000);
-});
+// @ts-ignore
+window.test = {
+    fillQuiz() {
+        $('[data-start-quiz]')!.click();
+        $$('[type="radio"]:not([value="fail"])').forEach((radio) => radio.click());
+    },
+};
+
+main();

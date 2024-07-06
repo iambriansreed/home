@@ -10,6 +10,7 @@ const data: {
         sources: { title: string; url: string }[];
     }[];
     questions: { title: string; answers: { title: string; failReason?: string }[]; id: string }[];
+    skillLevels: { id: number; title: string; description: string; range: [number, number] }[];
 } = {
     svg: {
         github: `<svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
@@ -18,31 +19,36 @@ const data: {
     </g>
 </svg>`,
     },
+    skillLevels: [
+        { id: 1, title: 'Fundamental Awareness', description: 'basic knowledge', range: [0, 25] },
+        { id: 2, title: 'Novice', description: 'limited experience', range: [25, 50] },
+        { id: 3, title: 'Intermediate', description: 'practical application', range: [50, 75] },
+        { id: 4, title: 'Advanced', description: 'applied theory', range: [75, 100] },
+    ],
     skills: [
         { title: 'React', progress: 80, years: present - 2015 },
         { title: 'React Relay', progress: 50, years: 3 },
-        { title: 'Redux', progress: 85, years: 5 },
+        { title: 'Redux', progress: 75, years: 5 },
         { title: 'VR Paintball', progress: 35, years: 2 },
         { title: 'React Native', progress: 50, years: 0.5 },
         { title: 'HyperText', progress: 60, years: present - 2007 },
         { title: 'CSS', progress: 85, years: present - 2007 },
         { title: 'Tailwind', progress: 70, years: 4 },
         { title: 'SASS', progress: 65, years: 6 },
-        { title: 'Nunchucks', progress: 10, years: present - 1980 },
-        { title: 'JavaScript', progress: 75, years: present - 2009 },
+        { title: 'Nunchucks', progress: 95, years: present - 1980 },
+        { title: 'JavaScript', progress: 85, years: present - 2009 },
         { title: 'Angular', progress: 65, years: 3 },
         { title: 'Node.js', progress: 70, years: present - 2015 },
-        { title: 'GraphQL', progress: 85, years: 2 },
-        { title: 'Crane kick', progress: 20, years: present - 1984 },
-        { title: 'TypeScript', progress: 70, years: present - 2015 },
+        { title: 'GraphQL', progress: 85, years: 7 },
+        { title: 'Crane kick', progress: 70, years: present - 1984 },
+        { title: 'TypeScript', progress: 76, years: present - 2015 },
         { title: 'Bowstaff', progress: 15, years: present - 1980 },
         { title: 'Sass/SCSS', progress: 85, years: present - 2013 },
         { title: 'C#', progress: 55, years: 6 },
         { title: 'PHP', progress: 70, years: 7 },
-        { title: 'BTTF', progress: 70, years: present - 1955 },
         { title: 'SQL', progress: 45, years: 8 },
         { title: 'Java', progress: 1, years: 0.1 },
-        { title: 'Settlers of Catan', progress: 47, years: 18 },
+        { title: 'Settlers of Catan', progress: 65, years: 18 },
         { title: 'Next.js', progress: 5, years: 0.1 },
     ],
     projects: [
