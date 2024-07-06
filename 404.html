@@ -16,10 +16,55 @@
         />
         <meta name="version" content="1.0.0" />
         <title>Brian S. Reed - UX Engineer</title>
-      <script type="module" crossorigin src="/assets/index-474co3v7.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-DaVlQG1H.css">
+        <style>
+            body {
+                background-color: rgba(36, 36, 36, 1);
+            }
+            .loading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                background-color: var(--background);
+                color: var(--foreground);
+            }
+            .loader {
+                width: 100px;
+                height: 100px;
+                position: relative;
+            }
+            .loader .blob {
+                width: 5rem;
+                height: 5rem;
+                background: linear-gradient(135deg, #1263ab, #67afef);
+                border-radius: 50%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 20px #0d497d;
+                animation: morph 2s linear infinite;
+            }
+            @keyframes morph {
+                0%,
+                to {
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+                33% {
+                    border-radius: 30% 70% 70% 30%/30% 29% 71% 70%;
+                    transform: translate(-50%, -50%) rotate(90deg) scale(1.2);
+                }
+                66% {
+                    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+                    transform: translate(-50%, -50%) rotate(180deg) scale(0.8);
+                }
+            }
+        </style>
+      <script type="module" crossorigin src="/assets/index-BzMC3-eB.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-5QSfjCSp.css">
     </head>
-
     <body>
         <div class="loading">
             <div class="loader">
@@ -61,115 +106,37 @@
                 <main>
                     <article>
                         <p>
-                            Hello, I'm Brian, a seasoned autodidactic Software Engineer with a drive for
-                            solving problems through well-thought-out engineering and empathetic UX design.
-                            Even though I have been slinging code for almost 20 years, I am always learning
-                            and growing.
+                            Hi, I'm Brian, a self-taught Software Engineer passionate about solving problems
+                            with thoughtful engineering and user-centric design. With nearly 20 years of
+                            coding experience, I continue to learn and evolve.
                         </p>
                         <p>
-                            Lately I have been using mostly React, Angular, TypeScript, Node, and GraphQL and
-                            am happy to take roles that use other technologies.
+                            Recently, I've been focused on React, TypeScript, Node.js, GraphQL, SCSS, and
+                            Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
+                            other technologies.
                         </p>
-                        <p>
+                        <!-- <p>
                             <a href="#skills" data-type="years">Years</a> /
                             <a href="#skills" data-type="progress">Advancement</a> /
                             <a href="#skills" data-type="title">A - Z</a>
-                        </p>
+                        </p> -->
                     </article>
+                    
+                    <h3>Advanced</h3>
                     <ul>
                         
                         <li
-                            data-years="9"
-                            data-title="React"
-                            data-progress="80"
+                            data-years="44"
+                            data-title="Nunchucks"
+                            data-progress="95"
                         >
-                            <h3>
-                                <span>React</span
-                                ><span>9 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>Nunchucks</span
+                                ><span>44 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 80%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="3"
-                            data-title="React Relay"
-                            data-progress="50"
-                        >
-                            <h3>
-                                <span>React Relay</span
-                                ><span>3 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 50%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="5"
-                            data-title="Redux"
-                            data-progress="85"
-                        >
-                            <h3>
-                                <span>Redux</span
-                                ><span>5 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 85%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="2"
-                            data-title="VR Paintball"
-                            data-progress="35"
-                        >
-                            <h3>
-                                <span>VR Paintball</span
-                                ><span>2 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 35%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="0.5"
-                            data-title="React Native"
-                            data-progress="50"
-                        >
-                            <h3>
-                                <span>React Native</span
-                                ><span>0.5 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 50%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="17"
-                            data-title="HyperText"
-                            data-progress="60"
-                        >
-                            <h3>
-                                <span>HyperText</span
-                                ><span>17 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 60%"></div>
+                                <div style="width: 95%"></div>
                                 
                             </div>
                         </li>
@@ -179,13 +146,114 @@
                             data-title="CSS"
                             data-progress="85"
                         >
-                            <h3>
+                            <h4>
                                 <span>CSS</span
                                 ><span>17 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 85%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="15"
+                            data-title="JavaScript"
+                            data-progress="85"
+                        >
+                            <h4>
+                                <span>JavaScript</span
+                                ><span>15 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 85%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="7"
+                            data-title="GraphQL"
+                            data-progress="85"
+                        >
+                            <h4>
+                                <span>GraphQL</span
+                                ><span>7 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 85%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="11"
+                            data-title="Sass/SCSS"
+                            data-progress="85"
+                        >
+                            <h4>
+                                <span>Sass/SCSS</span
+                                ><span>11 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 85%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="9"
+                            data-title="React"
+                            data-progress="80"
+                        >
+                            <h4>
+                                <span>React</span
+                                ><span>9 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 80%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="9"
+                            data-title="TypeScript"
+                            data-progress="76"
+                        >
+                            <h4>
+                                <span>TypeScript</span
+                                ><span>9 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 76%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    
+                    <h3>Intermediate</h3>
+                    <ul>
+                        
+                        <li
+                            data-years="5"
+                            data-title="Redux"
+                            data-progress="75"
+                        >
+                            <h4>
+                                <span>Redux</span
+                                ><span>5 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 75%"></div>
                                 
                             </div>
                         </li>
@@ -195,10 +263,58 @@
                             data-title="Tailwind"
                             data-progress="70"
                         >
-                            <h3>
+                            <h4>
                                 <span>Tailwind</span
                                 ><span>4 yrs</span>
-                            </h3>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 70%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="9"
+                            data-title="Node.js"
+                            data-progress="70"
+                        >
+                            <h4>
+                                <span>Node.js</span
+                                ><span>9 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 70%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="40"
+                            data-title="Crane kick"
+                            data-progress="70"
+                        >
+                            <h4>
+                                <span>Crane kick</span
+                                ><span>40 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 70%"></div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li
+                            data-years="7"
+                            data-title="PHP"
+                            data-progress="70"
+                        >
+                            <h4>
+                                <span>PHP</span
+                                ><span>7 yrs</span>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 70%"></div>
@@ -211,45 +327,13 @@
                             data-title="SASS"
                             data-progress="65"
                         >
-                            <h3>
+                            <h4>
                                 <span>SASS</span
                                 ><span>6 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 65%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="44"
-                            data-title="Nunchucks"
-                            data-progress="10"
-                        >
-                            <h3>
-                                <span>Nunchucks</span
-                                ><span>44 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 10%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="15"
-                            data-title="JavaScript"
-                            data-progress="75"
-                        >
-                            <h3>
-                                <span>JavaScript</span
-                                ><span>15 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 75%"></div>
                                 
                             </div>
                         </li>
@@ -259,10 +343,10 @@
                             data-title="Angular"
                             data-progress="65"
                         >
-                            <h3>
+                            <h4>
                                 <span>Angular</span
                                 ><span>3 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 65%"></div>
@@ -271,97 +355,33 @@
                         </li>
                         
                         <li
-                            data-years="9"
-                            data-title="Node.js"
-                            data-progress="70"
+                            data-years="18"
+                            data-title="Settlers of Catan"
+                            data-progress="65"
                         >
-                            <h3>
-                                <span>Node.js</span
-                                ><span>9 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>Settlers of Catan</span
+                                ><span>18 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 70%"></div>
+                                <div style="width: 65%"></div>
                                 
                             </div>
                         </li>
                         
                         <li
-                            data-years="2"
-                            data-title="GraphQL"
-                            data-progress="85"
+                            data-years="17"
+                            data-title="HyperText"
+                            data-progress="60"
                         >
-                            <h3>
-                                <span>GraphQL</span
-                                ><span>2 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>HyperText</span
+                                ><span>17 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 85%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="40"
-                            data-title="Crane kick"
-                            data-progress="20"
-                        >
-                            <h3>
-                                <span>Crane kick</span
-                                ><span>40 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 20%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="9"
-                            data-title="TypeScript"
-                            data-progress="70"
-                        >
-                            <h3>
-                                <span>TypeScript</span
-                                ><span>9 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 70%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="44"
-                            data-title="Bowstaff"
-                            data-progress="15"
-                        >
-                            <h3>
-                                <span>Bowstaff</span
-                                ><span>44 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 15%"></div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li
-                            data-years="11"
-                            data-title="Sass/SCSS"
-                            data-progress="85"
-                        >
-                            <h3>
-                                <span>Sass/SCSS</span
-                                ><span>11 yrs</span>
-                            </h3>
-                            <div>
-                                
-                                <div style="width: 85%"></div>
+                                <div style="width: 60%"></div>
                                 
                             </div>
                         </li>
@@ -371,10 +391,10 @@
                             data-title="C#"
                             data-progress="55"
                         >
-                            <h3>
+                            <h4>
                                 <span>C#</span
                                 ><span>6 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 55%"></div>
@@ -382,34 +402,39 @@
                             </div>
                         </li>
                         
+                    </ul>
+                    
+                    <h3>Novice</h3>
+                    <ul>
+                        
                         <li
-                            data-years="7"
-                            data-title="PHP"
-                            data-progress="70"
+                            data-years="3"
+                            data-title="React Relay"
+                            data-progress="50"
                         >
-                            <h3>
-                                <span>PHP</span
-                                ><span>7 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>React Relay</span
+                                ><span>3 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 70%"></div>
+                                <div style="width: 50%"></div>
                                 
                             </div>
                         </li>
                         
                         <li
-                            data-years="69"
-                            data-title="BTTF"
-                            data-progress="70"
+                            data-years="0.5"
+                            data-title="React Native"
+                            data-progress="50"
                         >
-                            <h3>
-                                <span>BTTF</span
-                                ><span>69 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>React Native</span
+                                ><span>0.5 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 70%"></div>
+                                <div style="width: 50%"></div>
                                 
                             </div>
                         </li>
@@ -419,10 +444,10 @@
                             data-title="SQL"
                             data-progress="45"
                         >
-                            <h3>
+                            <h4>
                                 <span>SQL</span
                                 ><span>8 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 45%"></div>
@@ -431,33 +456,38 @@
                         </li>
                         
                         <li
-                            data-years="0.1"
-                            data-title="Java"
-                            data-progress="1"
+                            data-years="2"
+                            data-title="VR Paintball"
+                            data-progress="35"
                         >
-                            <h3>
-                                <span>Java</span
-                                ><span>0.1 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>VR Paintball</span
+                                ><span>2 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 1%"></div>
+                                <div style="width: 35%"></div>
                                 
                             </div>
                         </li>
                         
+                    </ul>
+                    
+                    <h3>Fundamental Awareness</h3>
+                    <ul>
+                        
                         <li
-                            data-years="18"
-                            data-title="Settlers of Catan"
-                            data-progress="47"
+                            data-years="44"
+                            data-title="Bowstaff"
+                            data-progress="15"
                         >
-                            <h3>
-                                <span>Settlers of Catan</span
-                                ><span>18 yrs</span>
-                            </h3>
+                            <h4>
+                                <span>Bowstaff</span
+                                ><span>44 yrs</span>
+                            </h4>
                             <div>
                                 
-                                <div style="width: 47%"></div>
+                                <div style="width: 15%"></div>
                                 
                             </div>
                         </li>
@@ -467,10 +497,10 @@
                             data-title="Next.js"
                             data-progress="5"
                         >
-                            <h3>
+                            <h4>
                                 <span>Next.js</span
                                 ><span>0.1 yrs</span>
-                            </h3>
+                            </h4>
                             <div>
                                 
                                 <div style="width: 5%"></div>
@@ -478,7 +508,24 @@
                             </div>
                         </li>
                         
+                        <li
+                            data-years="0.1"
+                            data-title="Java"
+                            data-progress="1"
+                        >
+                            <h4>
+                                <span>Java</span
+                                ><span>0.1 yrs</span>
+                            </h4>
+                            <div>
+                                
+                                <div style="width: 1%"></div>
+                                
+                            </div>
+                        </li>
+                        
                     </ul>
+                    
                 </main>
             </section>
             <section id="projects">
@@ -601,7 +648,9 @@
                             </p>
                         </fieldset>
                         <p class="found-email">Wow. <span></span> is a nice email address.</p>
-                        <button type="submit">Send Message</button>
+                        <footer>
+                            <button type="submit">Send Message</button>
+                        </footer>
                     </form>
                 </main>
             </section>
@@ -1093,9 +1142,9 @@
                             <p class="error-description">This is a required field.</p>
                         </fieldset>
                         
-                        <div>
+                        <footer>
                             <button type="submit" class="check-results">Check Results</button>
-                        </div>
+                        </footer>
                     </form>
 
                     <article class="quiz-fail">
@@ -1110,13 +1159,6 @@
                             might work out, contact me on
                             <a target="_blank" href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
                         </p>
-                        <div class="image">
-                            <img
-                                src="https://media.giphy.com/media/f72BA6kQXT4uQ/giphy.gif"
-                                alt="power rangers with a headache"
-                                width="320"
-                            />
-                        </div>
                     </article>
 
                     <article class="quiz-pass">
@@ -1126,16 +1168,10 @@
                                 <label for="send-email"
                                     >One last step. Add your email and send me the results.</label
                                 >
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    name="send-email"
-                                    required
-                                    value="me@iambrian.com"
-                                />
+                                <input type="email" placeholder="Email" name="send-email" required />
                                 <p class="error-description">That email address doesn't seem right.</p>
                             </fieldset>
-                            <button type="submit">Send Results</button>
+                            <footer><button type="submit">Send Results</button></footer>
                         </form>
                     </article>
 
