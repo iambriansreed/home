@@ -94,7 +94,7 @@ async function main() {
     async function send(data: ContactResponse) {
         return Promise.all([
             new Promise<void>((resolve) => setTimeout(resolve, 1000)),
-            fetch('https://api.iambrian.dev/' + data.type, {
+            fetch('https://api.iambrian.com/' + data.type, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
