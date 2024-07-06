@@ -2,12 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/b.svg" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+            name="description"
+            content="Brian S. Reed is a frontend focused full stack engineer with over 15 years designing and developing software for the internet using React, TypeScript, and Node."
         />
-        <title>I am Brian</title>
+        <meta name="author" content="iambriansreed" />
+        <title>Brian S. Reed - UX Engineer</title>
     </head>
 
     <body>
@@ -51,8 +54,10 @@
                 <main>
                     <article>
                         <p>
-                            I am a full stack, frontend focused, UX engineer with over 15 years of experience
-                            designing and developing software.
+                            Hello, I'm Brian, a seasoned autodidactic Software Engineer with a drive for
+                            solving problems through well-thought-out engineering and empathetic UX design.
+                            Even though I have been slinging code for almost 20 years, I am always learning
+                            and growing.
                         </p>
                         <p>
                             Lately I have been using mostly React, Angular, TypeScript, Node, and GraphQL and
@@ -103,7 +108,9 @@
                         <p class="sources">
                             <% for(const source of project.sources) { %>
                             <span> / </span>
-                            <a href="<%= source.url %>"><%- svg.github%> <%= source.title %></a>
+                            <a target="_blank" href="<%= source.url %>"
+                                ><%- svg.github%> <%= source.title %></a
+                            >
                             <% } %>
                         </p>
                     </article>
@@ -115,9 +122,10 @@
                 <main>
                     <article>
                         <p>
-                            Find me on <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a> or
-                            send me a message below.<br />Make sure to include your email address anywhere in
-                            the message.
+                            Find me on
+                            <a target="_blank" href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>
+                            or send me a message below.<br />Make sure to include your email address anywhere
+                            in the message.
                         </p>
                     </article>
                     <form method="dialog" class="contact-form">
@@ -198,7 +206,7 @@
                             If you think you made a mistake, scroll up and look for the
                             <span style="color: tomato">messages in red</span>.<br />If you still think this
                             might work out, contact me on
-                            <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
+                            <a target="_blank" href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
                         </p>
                         <div class="image">
                             <img
@@ -234,12 +242,19 @@
                         <p>
                             I will review the results and get back to you as soon as possible. If you have any
                             questions in the meantime, feel free to reach out on
-                            <a href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
+                            <a target="_blank" href="https://www.linkedin.com/in/iambriansreed/">LinkedIn</a>.
                         </p>
                     </article>
                 </main>
             </section>
         </div>
+        <footer style="display: none">
+            <p>
+                <a target="_blank" href="https://quotesondesign.com/brian-reed/">
+                    ”Everything is designed. Few things are designed well.“</a
+                >
+            </p>
+        </footer>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>

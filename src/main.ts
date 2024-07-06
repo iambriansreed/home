@@ -9,6 +9,7 @@ async function main() {
 
     $('body > .loading')!.remove();
     $('.sections')!.removeAttribute('style');
+    $('body > footer')!.removeAttribute('style');
 
     function nextSubtitle(subtitle: Element | null) {
         setTimeout(() => {
@@ -115,17 +116,19 @@ async function main() {
             years: +node.dataset.years!,
         }));
 
-        const sorts = {
+        const sortsDefault = {
             title: false,
             progress: true,
             years: true,
         };
 
+        let sorts = { ...sortsDefault };
+
         sortLinks.forEach((link) => {
-            const sortType: keyof typeof sorts = link.dataset.type as any;
+            const sortType: keyof typeof sortsDefault = link.dataset.type as any;
 
             link.addEventListener('click', () => {
-                sorts[sortType] = !sorts[sortType];
+                sorts = { ...sortsDefault, [sortType]: !sorts[sortType] };
 
                 list.append(
                     ...listItems
@@ -222,11 +225,6 @@ async function main() {
             setState('quiz');
             document.body.classList.add('hide-nav');
             window.location.hash = '#recruiters';
-
-            // todo: remove
-            $$<HTMLInputElement>('.options', recruiters).forEach((element) => {
-                $$<HTMLInputElement>('[type="radio"]:not([value="fail"])', element)[0]!.checked = true;
-            });
         });
 
         const fields = () =>

@@ -79,16 +79,6 @@ html {
     font: inherit;
 }
 
-article {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    max-width: 800px;
-    > * {
-        margin: 0 0 0.25em 0 !important;
-    }
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -107,6 +97,25 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
+}
+
+body > footer {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    outline: rgba(0, 0, 0, 0.2) solid 0.5rem;
+    font-weight: 50;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 800px;
+    > * {
+        margin: 0 0 0.25em 0 !important;
+    }
 }
 
 small {
