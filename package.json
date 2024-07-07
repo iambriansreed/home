@@ -1,7 +1,7 @@
 {
     "name": "@bsr/home",
     "version": "0.0.1",
-    "description": "Home on the interwebs for Brian S. Reed - Engineer & Designer.",
+    "description": "Home on the interwebs for Brian S. Reed - UX Engineer / Designer.",
     "main": "index.js",
     "type": "module",
     "scripts": {

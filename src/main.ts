@@ -1,14 +1,10 @@
 import './style.scss';
-import { $, $$ } from './utils';
+import { $, $$, intersecting } from './utils';
 import data from './data';
 
 export const isTouchDevice = 'ontouchstart' in window;
 
-[
-    { weight: 50, url: 'Metropolis-Thin.woff2' },
-    { weight: 200, url: 'Metropolis-Light.woff2' },
-    { weight: 500, url: 'Metropolis-SemiBold.woff2' },
-].forEach(async ({ url, weight }) =>
+[{ weight: 200, url: 'Metropolis-Light.woff2' }].forEach(async ({ url, weight }) =>
     document.fonts.add(
         await new FontFace('base', `url(/fonts/${url})`, {
             weight: weight.toString(),
@@ -39,15 +35,11 @@ async function main() {
     const scrollElement = document.location.hash && $(document.location.hash);
     if (scrollElement) scrollElement.scrollIntoView({ behavior: 'smooth' });
 
-    document.querySelectorAll('section').forEach((target) => {
-        new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => entry.target.classList.toggle('active', entry.isIntersecting));
-            },
-            {
-                rootMargin: '-20% 0px -20% 0px',
-            }
-        ).observe(target);
+    intersecting('#skills li, h2, h3, h4, article, svg, fieldset', (entry, observer) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
     });
 
     const nav = $('nav')!;
@@ -210,7 +202,7 @@ async function main() {
             setState(hasFailed() ? 'fail' : 'quiz');
         });
 
-        const button = $('button', form)!;
+        const button = $('button.check-results', form)!;
         button!.addEventListener('click', async function () {
             form.classList.add('submitted');
 

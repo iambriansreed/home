@@ -84,7 +84,6 @@ body > footer {
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.4);
     outline: rgba(0, 0, 0, 0.2) solid 0.5rem;
-    font-weight: 50;
 }
 
 article {
@@ -191,6 +190,7 @@ fieldset {
     &:disabled {
         opacity: 0.7;
     }
+
     > p {
         margin-top: 1rem;
     }
@@ -198,9 +198,7 @@ fieldset {
 
 fieldset.has-error,
 .fieldset-has-error {
-    h3 {
-        color: tomato;
-    }
+    color: tomato;
 
     .error-description {
         display: block;
@@ -236,6 +234,26 @@ a {
     0% {
         transform: rotate(0deg);
     }
+}
+
+#skills li,
+h2,
+h3,
+h4,
+article,
+svg,
+fieldset {
+    transition: opacity 1s ease-in-out;
+    opacity: 0.15;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+h2,
+h3 {
+    transition-duration: 1.15s;
 }
 
 nav {
@@ -306,6 +324,10 @@ form {
     justify-content: center;
     align-items: center;
 
+    @media screen and (min-width: 840px) {
+        min-width: 780px;
+    }
+
     > footer {
         margin-top: 1rem;
     }
@@ -313,13 +335,21 @@ form {
 
 h2 {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin: 1em 0 0.5em 0;
+
+    section > & {
+        margin-top: 0;
+    }
 }
 
 h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    margin-top: 2rem;
+    font-size: 1.35rem;
+    margin: 1em 0 0.5em 0;
+}
+
+h4 {
+    font-size: 1.05rem;
+    margin: 1em 0 0.5em 0;
 }
 
 .sections {
@@ -352,13 +382,13 @@ h3 {
         overflow-x: hidden;
         padding: 2rem;
         align-items: center;
-        opacity: 0.15;
-        transition: opacity 1s linear;
 
         main {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            row-gap: 1rem;
+            justify-content: center;
+            align-items: center;
         }
 
         &.active {
@@ -423,38 +453,13 @@ h3 {
         letter-spacing: -0.25em;
         line-height: 0.8;
         width: 100%;
+        opacity: 0.9;
 
-        > span {
-            display: flex;
-            flex-direction: row;
-            margin-left: -0.05em;
-            margin-right: -0.05em;
-
-            &.text-i-am {
-                line-height: 0.75;
-                font-size: 17vw;
-                font-weight: 50;
-
-                @media screen and (min-width: 1000px) {
-                    font-size: 8rem;
-                }
-            }
-
-            &.text-brian {
-                line-height: 0.75;
-                display: block;
-                font-size: 36vw;
-                font-weight: 500;
-                margin-top: 0.05em;
-
-                span {
-                    margin-right: -0.025125em;
-                }
-
-                @media screen and (min-width: 1000px) {
-                    font-size: 17rem;
-                }
-            }
+        svg.i-am {
+            width: 34%;
+        }
+        svg.brian {
+            width: 100%;
         }
     }
 
@@ -520,23 +525,21 @@ h3 {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        text-align: center;
     }
+
     ul {
         display: grid;
         gap: 2rem;
-        row-gap: 0.5rem;
+        row-gap: 0;
         grid-template-columns: 1fr;
         width: 100%;
 
         @media screen and (min-width: 1000px) {
             grid-template-columns: 1fr 1fr 1fr;
-            row-gap: 1rem;
         }
 
         @media screen and (min-width: 600px) {
             grid-template-columns: 1fr 1fr;
-            row-gap: 1rem;
         }
 
         li {
@@ -569,24 +572,22 @@ h3 {
 
                 div {
                     width: 0;
-                    transition: all 2s ease-in-out;
+                    transition: width 2s ease-in-out;
                     background-color: var(--accent-background);
                     border-radius: var(--border-radius-sm);
                 }
             }
-        }
-    }
 
-    &.active {
-        ul li {
-            opacity: 1;
-        }
-    }
+            &.visible {
+                opacity: 1;
+            }
 
-    &:not(.active) {
-        ul li div div[style] {
-            width: 0 !important;
-            transition-duration: 0.5s;
+            &:not(.visible) {
+                div div[style] {
+                    width: 0 !important;
+                    transition-duration: 0.5s;
+                }
+            }
         }
     }
 }
@@ -594,9 +595,6 @@ h3 {
 #projects {
     .intro {
         margin-bottom: 1rem;
-    }
-
-    small {
     }
 
     svg {
@@ -658,8 +656,6 @@ h3 {
 
             .success {
                 display: block;
-                span {
-                }
             }
         }
     }
@@ -702,7 +698,7 @@ h3 {
             height: 0.65em;
             border-radius: 50%;
             transform: scale(0);
-            transition: 120ms transform ease-in-out;
+            transition: transform 120ms ease-in-out;
             box-shadow: inset 1em 1em var(--accent-foreground);
             /* windows high contrast mode */
             background-color: canvastext;
@@ -711,10 +707,6 @@ h3 {
         &:checked::before {
             transform: scale(1);
         }
-    }
-
-    .quiz-fail {
-        margin-top: 2rem;
     }
 
     .quiz-pass {
@@ -738,6 +730,8 @@ h3 {
     }
 
     form {
+        width: 100%;
+
         fieldset.email {
             label {
                 margin-bottom: 1rem;
@@ -798,6 +792,10 @@ h3 {
                     }
                 }
             }
+        }
+
+        &.quiz {
+            gap: 1rem;
         }
     }
 
