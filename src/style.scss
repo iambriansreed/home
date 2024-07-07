@@ -62,7 +62,6 @@ body {
     display: flex;
     flex-direction: column;
     min-width: 320px;
-    min-height: 100vh;
 
     font-family: 'base';
     line-height: 1.5;
@@ -318,15 +317,12 @@ nav {
 
 form {
     display: flex;
-    max-width: 780px;
+    width: 100%;
+    max-width: 700px;
     flex-direction: column;
     position: relative;
     justify-content: center;
     align-items: center;
-
-    @media screen and (min-width: 840px) {
-        min-width: 780px;
-    }
 
     > footer {
         margin-top: 1rem;
