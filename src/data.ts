@@ -63,7 +63,7 @@ const data: {
         },
         {
             title: `Connect 4 - Human vs Robot`,
-            description: `Play Connect 4 against a robot. I continually update the robot might not be the best but it's competitive enough to keep you entertained.`,
+            description: `Engage in a game of Connect 4 against a robot. I consistently improve the robot's abilities to ensure it offers a competitive experience that keeps you entertained.`,
             skills: ['TypeScript', 'SASS', 'Vite'],
             sources: [{ title: 'Frontend', url: 'https://github.com/iambriansreed/connect4' }],
         },
