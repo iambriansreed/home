@@ -610,11 +610,11 @@ h4 {
                 flex-direction: row;
                 justify-content: space-between;
                 flex-wrap: wrap;
-                span {
+                span.title {
                     white-space: nowrap;
                 }
-                span:nth-child(2) {
-                    color: var(--accent-foreground);
+                span.years {
+                    color: var(--foreground-50);
                     text-align: right;
                 }
             }

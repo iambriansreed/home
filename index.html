@@ -147,8 +147,10 @@
                             data-progress="<%= skill.progress %>"
                         >
                             <h4>
-                                <span><%= skill.title %></span
-                                ><span><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span>
+                                <span class="title"><%= skill.title %></span
+                                ><span class="years"
+                                    ><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span
+                                >
                             </h4>
                             <div class="progress-bar">
                                 <%- `
