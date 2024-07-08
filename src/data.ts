@@ -1,6 +1,7 @@
 const present = 2024;
 
 const data: {
+    titles: string[];
     navigation: { id: string; title: string }[];
     svg: { github: string };
     skills: { title: string; progress: number; years: number }[];
@@ -13,6 +14,16 @@ const data: {
     questions: { title: string; answers: { title: string; failReason?: string }[]; id: string }[];
     skillLevels: { id: number; title: string; description: string; range: [number, number] }[];
 } = {
+    titles: [
+        'Web Designer',
+        'Graphic Designer',
+        'Web Application Developer',
+        'Full Stack Developer',
+        'Senior Software Engineer',
+        'Developer Advisor',
+        'Senior Front End Engineer',
+        'UX Engineer',
+    ],
     navigation: [
         {
             id: 'welcome',

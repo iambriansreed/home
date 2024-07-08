@@ -21,29 +21,34 @@ async function main() {
     $('.sections')!.removeAttribute('style');
     $('body > footer')!.removeAttribute('style');
 
-    function nextSubtitle(subtitle: Element | null) {
-        setTimeout(() => {
-            if (!subtitle) return;
-            subtitle.classList.add('primary');
-            setTimeout(() => {
-                subtitle.classList.remove('primary');
-                subtitle.classList.add('secondary');
-            }, 1000);
-            nextSubtitle(subtitle.nextElementSibling);
-        }, 1000);
-    }
+    // subtitles
+    {
+        function nextSubtitle(element: HTMLElement | null, lastElement?: Element) {
+            if (!element) return;
+            lastElement?.classList.add('hide');
+            element.classList.add('load');
+            setTimeout(() => nextSubtitle(element.previousElementSibling as HTMLElement, element), 750);
+        }
 
-    nextSubtitle($('#welcome ul li:first-child'));
+        setTimeout(() => nextSubtitle($('#welcome ul li:last-child')), 500);
+    }
 
     const scrollElement = document.location.hash && $(document.location.hash);
     if (scrollElement) scrollElement.scrollIntoView({ behavior: 'smooth' });
 
-    intersecting('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset', (entry, observer) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+    intersecting(
+        '#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset',
+        (entry, observer) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        },
+        {},
+        (element) => {
+            element.classList.add('toggle-visibility');
         }
-    });
+    );
 
     const nav = $('nav')!;
 

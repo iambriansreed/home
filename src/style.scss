@@ -79,15 +79,6 @@ body {
     background-color: black;
 }
 
-body > footer {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 1rem;
-    background-color: black;
-    outline: rgba(0, 0, 0, 0.2) solid 0.5rem;
-}
-
 article {
     display: flex;
     flex-direction: column;
@@ -238,13 +229,7 @@ a {
     }
 }
 
-#skills li,
-h2,
-h3,
-h4,
-article,
-svg,
-fieldset {
+.toggle-visibility {
     transition: opacity 1s ease-in-out;
     opacity: 0.15;
 
@@ -462,50 +447,96 @@ h4 {
     .subtitle {
         display: flex;
         width: 100%;
-        margin-top: 1rem;
-        flex-direction: row;
-        justify-content: space-between;
+        margin-top: 0.51rem;
         max-width: 800px;
         position: relative;
+        overflow: hidden;
+        line-height: 1;
+        height: 40vh;
 
-        ul {
-            display: flex;
-            flex-direction: row-reverse;
-            gap: 2rem;
-            font-size: 2rem;
-            line-height: 1;
-            width: fit-content;
-            list-style: none;
-            white-space: nowrap;
+        &::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, var(--background), transparent);
+            z-index: 1;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            // min-width: 800%;
+            // // max-width: 800%;
+            // transform: translateY(-100vh);
+            // transition: transform 0.5s ease;
+
+            @media screen and (min-width: 800px) {
+                font-size: 0.8rem;
+            }
+
+            @media screen and (min-width: 900px) {
+                font-size: 0.9rem;
+            }
+
+            @media screen and (min-width: 1000px) {
+                font-size: 1rem;
+            }
 
             li {
-                max-width: 0px;
-                margin-left: -2rem;
-                overflow: hidden;
+                font-size: 6vw;
                 opacity: 0;
-            }
-
-            li.primary,
-            li.secondary {
-                max-width: 800px;
-                margin-left: 0;
-                opacity: 0.15;
+                max-height: 0;
+                overflow: hidden;
                 transition: all 1s linear;
+
+                &:last-child {
+                    opacity: 1;
+                }
+
+                &.load {
+                    margin-top: 1vw;
+                    max-height: 100%;
+                    opacity: 1;
+                    overflow: visible;
+                }
+
+                &.hide {
+                    opacity: 0.15;
+                }
+
+                &:first-child {
+                    font-size: 7vw;
+                    margin-top: 0;
+                }
+
+                @media screen and (max-width: 800px) {
+                    &:first-child {
+                        font-size: 8vw;
+                        margin-top: 0;
+                    }
+                }
             }
 
-            li.primary,
-            li:last-of-type {
+            // li.primary,
+            // li.secondary {
+            //     max-width: 100%;
+            //     margin-left: 0;
+            //     opacity: 0.15;
+            //     transition: all 1s linear;
+            // }
+
+            li.primary {
                 opacity: 1;
             }
 
-            li:last-of-type.secondary {
-                font-size: 3rem;
-                transition: all 5s ease;
-            }
+            // li:last-of-type.secondary {
+            //     font-size: 3rem;
+            //     transition: all 5s ease;
+            // }
 
             // li {
             //     position: relative;
@@ -601,18 +632,18 @@ h4 {
                 top: 0;
 
                 &:nth-of-type(1) {
-                    left: 0;
-                }
-                &:nth-of-type(2) {
                     right: 0;
                 }
-            }
-
-            span:nth-of-type(1):hover ~ div {
-                width: 15% !important;
+                &:nth-of-type(2) {
+                    left: 0;
+                }
             }
 
             span:nth-of-type(2):hover ~ div {
+                width: 15% !important;
+            }
+
+            span:nth-of-type(1):hover ~ div {
                 width: 85% !important;
             }
         }
@@ -899,4 +930,14 @@ h4 {
     &[data-state='fail'] button.check-results {
         display: none !important;
     }
+}
+
+body > footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(0deg, var(--background), var(--background-75));
+    outline: var(--background-75) solid 2px;
 }

@@ -96,14 +96,9 @@
                 </h1>
                 <div class="subtitle fade-right">
                     <ul>
-                        <li>Web Designer</li>
-                        <li>Graphic Designer</li>
-                        <li>Web Application Developer</li>
-                        <li>Full Stack Developer</li>
-                        <li>Senior Software Engineer</li>
-                        <li>Developer Advisor</li>
-                        <li>Senior Front End Engineer</li>
-                        <li>Senior UX Engineer</li>
+                        <% for(const title of titles.toReversed()) { %>
+                        <li><%= title %></li>
+                        <% } %>
                     </ul>
                 </div>
             </section>
@@ -130,7 +125,10 @@
                         </div>
                     </div>
                     <article>
-                        <p>Below is a list of skills with progress bars indicating level of proficiency.</p>
+                        <p>
+                            Below is a list of skills with progress bars indicating my level of proficiency
+                            and the number of years I have actively used each technology.
+                        </p>
                     </article>
                     <% for(const skillLevel of skillLevels) { %>
                     <h3><%= skillLevel.title %></h3>

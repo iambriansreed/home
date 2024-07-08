@@ -13,9 +13,11 @@ export function getRandomArbitrary(min: number, max: number) {
 export function intersecting(
     selector: string,
     intersectChange: (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void,
-    options?: IntersectionObserverInit
+    options?: IntersectionObserverInit,
+    init?: (element: HTMLElement) => void
 ) {
     $$(selector).forEach(function (target) {
+        init?.(target);
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => intersectChange(entry, observer));
         }, options);
