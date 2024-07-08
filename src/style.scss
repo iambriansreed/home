@@ -255,66 +255,6 @@ h3 {
     transition-duration: 1.15s;
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    width: fit-content;
-    transition: all 0.25s ease-out;
-    transform: translateX(70%) translateY(-70%);
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    border-top: var(--accent-background) solid 1rem;
-    border-bottom: var(--accent-background) solid 3rem;
-    border-left: var(--accent-background) solid 3rem;
-    opacity: 0.25;
-    border-bottom-left-radius: var(--border-radius);
-    cursor: pointer;
-
-    @media screen and (max-width: 860px) {
-        transform: translateX(90%) translateY(-90%);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            opacity: 1;
-            transition-duration: 0.15s;
-            transform: translateX(60%) translateY(-60%);
-        }
-    }
-
-    a {
-        line-height: 0.75;
-        font-size: 1rem;
-        color: var(--foreground);
-        background-color: var(--accent-background);
-        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-
-    &.active {
-        opacity: 1;
-        transform: unset;
-        border-color: var(--accent-background);
-        border-bottom-width: 1rem;
-        border-left-width: 0;
-
-        a {
-            background-color: var(--accent-background);
-            &:hover {
-                color: var(--background);
-                background-color: var(--accent-foreground);
-            }
-        }
-    }
-}
-
 form {
     display: flex;
     width: 100%;
@@ -355,9 +295,62 @@ h4 {
     gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
+    padding-left: 1rem;
 
     @media screen and (max-width: 999px) {
         max-width: 100%;
+    }
+
+    nav {
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        width: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.75;
+        transition: opacity 1s ease-in-out;
+        transition-delay: 2s;
+
+        @media screen and (max-width: 999px) {
+            left: 0.25rem;
+        }
+
+        &:focus-within {
+            transition: opacity 0.25s ease-in-out;
+            opacity: 1;
+            transition-delay: 0;
+        }
+
+        a {
+            width: 2rem;
+            display: block;
+            color: var(--foreground);
+            text-decoration: none;
+            transition: all 0.25s ease-in-out;
+            padding: 0.5rem 0.25rem;
+            position: relative;
+            z-index: 1;
+
+            span {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                display: block;
+            }
+        }
+
+        .active-background {
+            position: absolute;
+            width: 2rem;
+            height: 4rem;
+            background-color: var(--foreground-10);
+            z-index: -1;
+            top: 0;
+            transition: all 0.25s ease-in-out;
+            border-radius: var(--border-radius);
+        }
     }
 
     #background {
@@ -495,6 +488,7 @@ h4 {
                         content: '';
                         position: absolute;
                         height: 0.05rem;
+                        min-height: 1px;
                         background-color: var(--foreground);
                         left: 0;
                         top: 50%;

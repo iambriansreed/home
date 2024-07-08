@@ -1,6 +1,7 @@
 const present = 2024;
 
 const data: {
+    navigation: { id: string; title: string }[];
     svg: { github: string };
     skills: { title: string; progress: number; years: number }[];
     projects: {
@@ -12,6 +13,28 @@ const data: {
     questions: { title: string; answers: { title: string; failReason?: string }[]; id: string }[];
     skillLevels: { id: number; title: string; description: string; range: [number, number] }[];
 } = {
+    navigation: [
+        {
+            id: 'welcome',
+            title: 'Welcome',
+        },
+        {
+            id: 'skills',
+            title: 'Skills',
+        },
+        {
+            id: 'projects',
+            title: 'Projects',
+        },
+        {
+            id: 'contact',
+            title: 'Contact',
+        },
+        {
+            id: 'recruiters',
+            title: 'Recruiters',
+        },
+    ],
     svg: {
         github: `<svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentcolor">

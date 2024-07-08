@@ -72,11 +72,11 @@
         </div>
         <div class="sections" style="display: none">
             <!-- <div id="background" tabindex="-1"></div> -->
-            <nav tabindex="1">
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#recruiters">Recruiters</a>
-                <a href="#contact">Contact</a>
+            <nav tabindex="1" data-active="welcome">
+                <% for(const link of navigation) { %>
+                <a href="#<%= link.id %>" data-section="<%= link.id %>"><span><%= link.title %></span></a>
+                <% } %>
+                <div class="active-background"></div>
             </nav>
             <section id="welcome">
                 <h1>
@@ -122,11 +122,6 @@
                             Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
                             other technologies.
                         </p>
-                        <!-- <p>
-                            <a href="#skills" data-type="years">Years</a> /
-                            <a href="#skills" data-type="progress">Advancement</a> /
-                            <a href="#skills" data-type="title">A - Z</a>
-                        </p> -->
                     </article>
                     <% for(const skillLevel of skillLevels) { %>
                     <h3><%= skillLevel.title %></h3>

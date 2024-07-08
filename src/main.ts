@@ -44,52 +44,25 @@ async function main() {
 
     const nav = $('nav')!;
 
-    let setNavActiveTimeout: ReturnType<typeof setTimeout> | null = null;
-    function setNavActive(active: boolean, force?: boolean) {
-        if (active === nav.classList.contains('active') && !setNavActiveTimeout) return;
+    const links = data.navigation.reduce((record, section) => {
+        return { ...record, [section.id]: $('[data-section="' + section.id + '"]', nav)! };
+    }, {} as Record<string, HTMLElement>);
 
-        if (setNavActiveTimeout) clearTimeout(setNavActiveTimeout);
-        setNavActiveTimeout = setTimeout(
-            () => {
-                nav.classList.toggle('active', active);
-                console.log('setNavActive', active);
-                setNavActiveTimeout = null;
-            },
-            force ? 0 : 1000
-        );
-    }
+    const activeBackground = $('.active-background', nav)!;
 
-    // nav
-    {
-        nav.addEventListener('click', () => setNavActive(true, true));
-        nav.addEventListener('mouseleave', () => setNavActive(false));
-        nav.addEventListener('mouseenter', () => setNavActive(true));
+    console.log(links, activeBackground);
 
-        let intervalClick: ReturnType<typeof setInterval>;
-        $$<HTMLAnchorElement>('a', nav).forEach((link) => {
-            link.addEventListener('click', function (e) {
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                setNavActive(false);
-
-                clearInterval(intervalClick);
-                // nav.style.pointerEvents = 'none';
-                // nav.style.transitionDelay = '0s';
-                const section = $('#' + link.href.split('#')[1]);
-                section!.focus();
-                intervalClick = setInterval(() => {
-                    // nav.style.pointerEvents = 'all';
-                    // nav.style.transitionDelay = '';
-                }, 1000);
-            });
-        });
-
-        setTimeout(() => setNavActive(false), 1000);
-    }
+    intersecting('section', (entry) => {
+        nav.dataset.section = entry.target.id;
+        if (entry.isIntersecting) {
+            activeBackground.style.top = links[entry.target.id].offsetTop + 'px';
+            activeBackground.style.height = links[entry.target.id].offsetHeight + 'px';
+        }
+    });
 
     window.addEventListener('scroll', function () {
         document.body.classList.remove('active');
-        setNavActive(false);
+        nav.blur();
     });
 
     type ContactResponse = {
