@@ -43,7 +43,7 @@ const data: {
 </svg>`,
     },
     skillLevels: [
-        { id: 1, title: 'Fundamental Awareness', description: 'basic knowledge', range: [0, 25] },
+        { id: 1, title: 'Beginner', description: 'basic knowledge', range: [0, 25] },
         { id: 2, title: 'Novice', description: 'limited experience', range: [25, 50] },
         { id: 3, title: 'Intermediate', description: 'practical application', range: [50, 75] },
         { id: 4, title: 'Advanced', description: 'applied theory', range: [75, 100] },

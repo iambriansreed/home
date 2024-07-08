@@ -35,7 +35,7 @@ async function main() {
     const scrollElement = document.location.hash && $(document.location.hash);
     if (scrollElement) scrollElement.scrollIntoView({ behavior: 'smooth' });
 
-    intersecting('#skills li, h2, h3, h4, article, svg, fieldset', (entry, observer) => {
+    intersecting('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset', (entry, observer) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);

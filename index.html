@@ -122,7 +122,20 @@
                             Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
                             other technologies.
                         </p>
+                        <p>
+                            Below is a list of skills with progress bars indicating an Advanced level of
+                            proficiency.
+                        </p>
                     </article>
+                    <div class="legend">
+                        <div class="labels">
+                            <span><%= skillLevels[3].title %></span>
+                            <span><%= skillLevels[0].title %></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div style="width: 50%"></div>
+                        </div>
+                    </div>
                     <% for(const skillLevel of skillLevels) { %>
                     <h3><%= skillLevel.title %></h3>
                     <ul>
@@ -137,7 +150,7 @@
                                 <span><%= skill.title %></span
                                 ><span><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span>
                             </h4>
-                            <div>
+                            <div class="progress-bar">
                                 <%- `
                                 <div style="width: ${skill.progress}%"></div>
                                 ` %>

@@ -524,6 +524,59 @@ h4 {
         gap: 1rem;
     }
 
+    .progress-bar {
+        height: 1rem;
+        width: 100%;
+        background-color: var(--foreground-10);
+        border-radius: var(--border-radius);
+
+        div {
+            height: 1rem;
+            width: 0;
+            transition: width 2s ease-in-out;
+            background-color: var(--accent-background);
+            border-radius: var(--border-radius-sm);
+        }
+
+        &.visible {
+            opacity: 1;
+        }
+
+        &:not(.visible) {
+            div[style] {
+                width: 0 !important;
+                transition-duration: 0.5s;
+            }
+        }
+    }
+
+    .legend {
+        width: 100%;
+        .labels {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            @keyframes change-width {
+                0% {
+                    width: 74%;
+                }
+                60% {
+                    width: 25%;
+                }
+                100% {
+                    width: 74%;
+                }
+            }
+
+            div {
+                animation: change-width 360s infinite;
+            }
+        }
+    }
+
     ul {
         display: grid;
         gap: 2rem;
@@ -542,7 +595,13 @@ h4 {
         li {
             margin-bottom: 0.5rem;
             list-style: none;
-            opacity: 0.15;
+            &.visible {
+                opacity: 1;
+            }
+
+            &:not(.visible) {
+                opacity: 0.15;
+            }
 
             h4 {
                 font-size: 1rem;
@@ -557,32 +616,6 @@ h4 {
                 span:nth-child(2) {
                     color: var(--accent-foreground);
                     text-align: right;
-                }
-            }
-
-            div {
-                display: block;
-                height: 1rem;
-                width: 100%;
-                background-color: var(--foreground-10);
-                border-radius: var(--border-radius);
-
-                div {
-                    width: 0;
-                    transition: width 2s ease-in-out;
-                    background-color: var(--accent-background);
-                    border-radius: var(--border-radius-sm);
-                }
-            }
-
-            &.visible {
-                opacity: 1;
-            }
-
-            &:not(.visible) {
-                div div[style] {
-                    width: 0 !important;
-                    transition-duration: 0.5s;
                 }
             }
         }
