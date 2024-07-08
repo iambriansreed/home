@@ -24,10 +24,13 @@ async function main() {
     function nextSubtitle(subtitle: Element | null) {
         setTimeout(() => {
             if (!subtitle) return;
-            subtitle.classList.add('show');
-
+            subtitle.classList.add('primary');
+            setTimeout(() => {
+                subtitle.classList.remove('primary');
+                subtitle.classList.add('secondary');
+            }, 1000);
             nextSubtitle(subtitle.nextElementSibling);
-        }, 250);
+        }, 1000);
     }
 
     nextSubtitle($('#welcome ul li:first-child'));

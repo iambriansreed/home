@@ -46,7 +46,8 @@ html {
     font-size: var(--size);
     text-wrap: pretty;
     font-weight: var(--font-weight);
-    user-select: none;
+    user-select: none !important;
+    background-color: black;
 }
 
 *,
@@ -68,20 +69,22 @@ body {
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: rgba(36, 36, 36, 1);
+    background-color: black;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
+    background-color: black;
 }
 
 body > footer {
-    margin-top: 2rem;
+    position: relative;
+    z-index: 10;
     text-align: center;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: black;
     outline: rgba(0, 0, 0, 0.2) solid 0.5rem;
 }
 
@@ -293,19 +296,21 @@ h4 {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding-left: 1rem;
+    padding-left: 1.5rem;
+    width: 100%;
+    background-color: #242424;
 
     @media screen and (max-width: 999px) {
         max-width: 100%;
+        padding-left: 2rem;
     }
 
     nav {
         position: fixed;
-        left: 1rem;
-        top: 1rem;
-        bottom: 3rem;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        padding: 1rem 1rem;
         width: 2rem;
         display: flex;
         flex-direction: column;
@@ -315,6 +320,8 @@ h4 {
         transition: opacity 1s ease-in-out;
         transition-delay: 2s;
         gap: 1rem;
+        background-color: var(--foreground-05);
+        box-shadow: rgba(0, 0, 0, 0.25) 0 0 1rem;
 
         @media screen and (max-width: 999px) {
             left: 0.25rem;
@@ -332,12 +339,13 @@ h4 {
             color: var(--foreground);
             transition: color 0.25s ease-in-out;
             text-decoration: none;
-            padding: 0 0.25rem;
             position: relative;
             z-index: 1;
+            padding: 0.5rem 0.25rem;
+            transition-delay: 0;
 
             &.active {
-                color: var(--accent-foreground);
+                //
             }
 
             span {
@@ -349,27 +357,14 @@ h4 {
 
         .active-background {
             position: absolute;
-            right: 0.25rem;
-            width: 0.125rem;
+            left: 0;
+            right: 0;
             top: 0;
             min-width: 2px;
-            background-color: var(--accent-background);
+            background: var(--background);
             z-index: -1;
-            transition: all 0.25s ease-in-out;
-            border-radius: var(--border-radius);
+            transition: all 0.125s linear;
         }
-    }
-
-    #background {
-        display: block;
-        position: fixed;
-        background: var(--accent-background);
-        opacity: 0.25;
-        width: 150vw;
-        height: 4rem;
-        z-index: -1;
-        transform: rotate(-45deg);
-        left: -50vw;
     }
 
     & > section {
@@ -378,6 +373,8 @@ h4 {
         overflow-x: hidden;
         padding: 2rem;
         align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
 
         main {
             display: flex;
@@ -442,7 +439,9 @@ h4 {
 }
 
 #welcome {
+    width: 100%;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
 
     h1 {
@@ -450,6 +449,7 @@ h4 {
         line-height: 0.8;
         width: 100%;
         opacity: 0.9;
+        max-width: 800px;
 
         svg.i-am {
             width: 34%;
@@ -465,53 +465,89 @@ h4 {
         margin-top: 1rem;
         flex-direction: row;
         justify-content: space-between;
+        max-width: 800px;
+        position: relative;
 
         ul {
             display: flex;
-            flex-direction: column-reverse;
-            font-size: 1rem;
+            flex-direction: row-reverse;
+            gap: 2rem;
+            font-size: 2rem;
             line-height: 1;
+            width: fit-content;
+            list-style: none;
+            white-space: nowrap;
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: flex-start;
 
             li {
-                position: relative;
-                list-style: none;
-                margin-top: 1rem;
-                width: fit-content;
-
-                &:last-child {
-                    font-size: 2rem;
-                }
-
-                max-height: 0px;
-                overflow-y: hidden;
-                transition: max-height 1.5s ease-in-out;
-
-                &.show {
-                    max-height: 1000px;
-                }
-
-                &.show:not(:last-child) {
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        height: 0.05rem;
-                        min-height: 1px;
-                        background-color: var(--foreground);
-                        left: 0;
-                        top: 50%;
-                        width: 100%;
-                        animation: strike 0.25s ease-in-out;
-                        @keyframes strike {
-                            0% {
-                                width: 0%;
-                            }
-                            100% {
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
+                max-width: 0px;
+                margin-left: -2rem;
+                overflow: hidden;
+                opacity: 0;
             }
+
+            li.primary,
+            li.secondary {
+                max-width: 800px;
+                margin-left: 0;
+                opacity: 0.15;
+                transition: all 1s linear;
+            }
+
+            li.primary,
+            li:last-of-type {
+                opacity: 1;
+            }
+
+            li:last-of-type.secondary {
+                font-size: 3rem;
+                transition: all 5s ease;
+            }
+
+            // li {
+            //     position: relative;
+            //     list-style: none;
+            //     margin-top: 1rem;
+            //     width: fit-content;
+
+            //     &:last-child {
+            //         font-size: 2rem;
+            //     }
+
+            //     max-height: 0px;
+            //     overflow-y: hidden;
+            //     transition: max-height 1.5s ease-in-out;
+
+            //     &.show {
+            //         max-height: 1000px;
+            //     }
+
+            //     &.show:not(:last-child) {
+            //         &::before {
+            //             display: none;
+            //             content: '';
+            //             position: absolute;
+            //             height: 0.05rem;
+            //             min-height: 1px;
+            //             background-color: var(--foreground);
+            //             left: 0;
+            //             top: 50%;
+            //             width: 100%;
+            //             animation: strike 0.25s ease-in-out;
+            //             @keyframes strike {
+            //                 0% {
+            //                     width: 0%;
+            //                 }
+            //                 100% {
+            //                     width: 100%;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
@@ -531,8 +567,7 @@ h4 {
         border-radius: var(--border-radius);
 
         div {
-            height: 1rem;
-            width: 0;
+            height: 100%;
             transition: width 2s ease-in-out;
             background-color: var(--accent-background);
             border-radius: var(--border-radius-sm);
@@ -552,27 +587,33 @@ h4 {
 
     .legend {
         width: 100%;
-        .labels {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
+        position: relative;
 
         .progress-bar {
-            @keyframes change-width {
-                0% {
-                    width: 74%;
+            position: relative;
+            height: 1.75rem;
+
+            span {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                padding: 0.25rem 0.5rem;
+                top: 0;
+
+                &:nth-of-type(1) {
+                    left: 0;
                 }
-                60% {
-                    width: 25%;
-                }
-                100% {
-                    width: 74%;
+                &:nth-of-type(2) {
+                    right: 0;
                 }
             }
 
-            div {
-                animation: change-width 360s infinite;
+            span:nth-of-type(1):hover ~ div {
+                width: 15% !important;
+            }
+
+            span:nth-of-type(2):hover ~ div {
+                width: 85% !important;
             }
         }
     }
