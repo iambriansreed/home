@@ -63,8 +63,8 @@
                 }
             }
         </style>
-      <script type="module" crossorigin src="/assets/index-07Fc2XfT.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-CDUK9LNS.css">
+      <script type="module" crossorigin src="/assets/index-CLnOBLBN.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-BjzOsT4Z.css">
     </head>
     <body>
         <div class="loading">
@@ -74,11 +74,19 @@
         </div>
         <div class="sections" style="display: none">
             <!-- <div id="background" tabindex="-1"></div> -->
-            <nav tabindex="1">
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#recruiters">Recruiters</a>
-                <a href="#contact">Contact</a>
+            <nav tabindex="1" data-active="welcome">
+                
+                <a href="#welcome" data-section="welcome"><span>Welcome</span></a>
+                
+                <a href="#skills" data-section="skills"><span>Skills</span></a>
+                
+                <a href="#projects" data-section="projects"><span>Projects</span></a>
+                
+                <a href="#contact" data-section="contact"><span>Contact</span></a>
+                
+                <a href="#recruiters" data-section="recruiters"><span>Recruiters</span></a>
+                
+                <div class="active-background"></div>
             </nav>
             <section id="welcome">
                 <h1>
@@ -124,11 +132,6 @@
                             Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
                             other technologies.
                         </p>
-                        <!-- <p>
-                            <a href="#skills" data-type="years">Years</a> /
-                            <a href="#skills" data-type="progress">Advancement</a> /
-                            <a href="#skills" data-type="title">A - Z</a>
-                        </p> -->
                     </article>
                     
                     <h3>Advanced</h3>
