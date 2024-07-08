@@ -305,14 +305,16 @@ h4 {
         position: fixed;
         left: 1rem;
         top: 1rem;
+        bottom: 3rem;
         width: 2rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         opacity: 0.75;
         transition: opacity 1s ease-in-out;
         transition-delay: 2s;
+        gap: 1rem;
 
         @media screen and (max-width: 999px) {
             left: 0.25rem;
@@ -328,11 +330,15 @@ h4 {
             width: 2rem;
             display: block;
             color: var(--foreground);
+            transition: color 0.25s ease-in-out;
             text-decoration: none;
-            transition: all 0.25s ease-in-out;
-            padding: 0.5rem 0.25rem;
+            padding: 0 0.25rem;
             position: relative;
             z-index: 1;
+
+            &.active {
+                color: var(--accent-foreground);
+            }
 
             span {
                 writing-mode: vertical-rl;
@@ -343,11 +349,12 @@ h4 {
 
         .active-background {
             position: absolute;
-            width: 2rem;
-            height: 4rem;
-            background-color: var(--foreground-10);
-            z-index: -1;
+            right: 0.25rem;
+            width: 0.125rem;
             top: 0;
+            min-width: 2px;
+            background-color: var(--accent-background);
+            z-index: -1;
             transition: all 0.25s ease-in-out;
             border-radius: var(--border-radius);
         }

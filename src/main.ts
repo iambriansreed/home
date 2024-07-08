@@ -50,14 +50,19 @@ async function main() {
 
     const activeBackground = $('.active-background', nav)!;
 
-    console.log(links, activeBackground);
-
-    intersecting('section', (entry) => {
-        nav.dataset.section = entry.target.id;
+    intersecting('section > h2, section > h1', (entry) => {
+        const activeId = (nav.dataset.section = entry.target.parentElement!.id);
         if (entry.isIntersecting) {
-            activeBackground.style.top = links[entry.target.id].offsetTop + 'px';
-            activeBackground.style.height = links[entry.target.id].offsetHeight + 'px';
+            Object.values(links).forEach((link) => link.classList.remove('active'));
+            links[activeId].classList.add('active');
+            activeBackground.style.top = links[activeId].offsetTop + 'px';
+            activeBackground.style.height = links[activeId].offsetHeight + 'px';
         }
+    });
+
+    window.addEventListener('scrollend', function () {
+        document.body.classList.remove('active');
+        nav.blur();
     });
 
     window.addEventListener('scroll', function () {
