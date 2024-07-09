@@ -15,16 +15,6 @@ export const isTouchDevice = 'ontouchstart' in window;
 async function main() {
     await document.fonts.ready;
 
-    setTimeout(() => {
-        const initialSection = data.navigation.find(
-            ({ id }) => window.location.pathname === '/' + id || window.location.hash === '#' + id
-        );
-        if (initialSection) {
-            const section = $('#' + initialSection.id);
-            section?.scrollIntoView({ behavior: 'instant' });
-        }
-    }, 1);
-
     $('body > .loading')!.remove();
     $('.sections')!.removeAttribute('style');
     $('body > footer')!.removeAttribute('style');
@@ -42,7 +32,6 @@ async function main() {
     }
 
     // toggleVisibility
-
     {
         const toggleVisibilityElements = $$('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset');
         toggleVisibilityElements.forEach((element) => element.classList.add('invisible'));
@@ -96,6 +85,17 @@ async function main() {
                 setActiveSection(activeId);
             }
         });
+
+        setTimeout(() => {
+            const initialSection = data.navigation.find(
+                ({ id }) => window.location.pathname.includes(id) || window.location.hash.includes(id)
+            );
+            if (initialSection) {
+                const activeId = initialSection?.id;
+                setActiveSection(activeId);
+                $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+            }
+        }, 1);
     }
 
     type ContactResponse = {
