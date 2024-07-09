@@ -70,16 +70,6 @@ async function main() {
                 activeBackground.style.height = links[activeId].offsetHeight + 'px';
             }
         });
-
-        // window.addEventListener('scrollend', function () {
-        //     document.body.classList.remove('active');
-        //     nav.blur();
-        // });
-
-        // window.addEventListener('scroll', function () {
-        //     document.body.classList.remove('active');
-        //     nav.blur();
-        // });
     }
 
     type ContactResponse = {

@@ -90,7 +90,7 @@ const data: {
         {
             title: `Sordle`,
             url: 'https://sordle.iambrian.com',
-            description: `A wordle clone that uses a static backend. You can play as much as you want. When you're done, it gives you the definition(s) of the word.`,
+            description: `Enjoy unlimited Wordle games with this Wordle clone. It features a static backend and provides the definition(s) of the word.`,
             skills: ['TypeScript', 'SASS', 'Vite'],
             sources: [
                 { title: 'Frontend', url: 'https://github.com/iambriansreed/sordle' },
@@ -107,7 +107,7 @@ const data: {
         {
             title: `Socket Chat`,
             url: 'https://chat.iambrian.com',
-            description: `A private chat application that ensures messages are only stored on the clients devices. It supports multiple rooms and only sends messages to the room the client is connected to. It leverages socket technology for real-time message transmission and employs a lightweight server to facilitate client connections.`,
+            description: `A chat application that supports multiple private rooms, with data stored exclusively on the clients' devices.`,
             skills: ['TypeScript', 'SASS', 'Socket.io', 'Tailwind', 'Jest', 'Vite'],
             sources: [
                 { title: 'Frontend', url: 'https://github.com/iambriansreed/comm-client' },
