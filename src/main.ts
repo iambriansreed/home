@@ -15,7 +15,15 @@ export const isTouchDevice = 'ontouchstart' in window;
 async function main() {
     await document.fonts.ready;
 
-    // if (window.location.hash !== '#recruiters') window.location.hash = '';
+    setTimeout(() => {
+        const initialSection = data.navigation.find(
+            ({ id }) => window.location.pathname === '/' + id || window.location.hash === '#' + id
+        );
+        if (initialSection) {
+            const section = $('#' + initialSection.id);
+            section?.scrollIntoView({ behavior: 'instant' });
+        }
+    }, 1);
 
     $('body > .loading')!.remove();
     $('.sections')!.removeAttribute('style');
@@ -33,22 +41,25 @@ async function main() {
         setTimeout(() => nextSubtitle($('#welcome ul li:last-child')), 500);
     }
 
-    const scrollElement = document.location.hash && $(document.location.hash);
-    if (scrollElement) scrollElement.scrollIntoView({ behavior: 'smooth' });
-
     // toggleVisibility
 
     {
         const toggleVisibilityElements = $$('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset');
         toggleVisibilityElements.forEach((element) => element.classList.add('invisible'));
 
-        intersecting(toggleVisibilityElements, (entry, observer) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove('invisible');
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+        intersecting(
+            toggleVisibilityElements,
+            (entry, observer) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('invisible');
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            },
+            {
+                threshold: 0.5,
             }
-        });
+        );
     }
 
     // nav
@@ -56,18 +67,33 @@ async function main() {
         const nav = $('nav')!;
 
         const links = data.navigation.reduce((record, section) => {
-            return { ...record, [section.id]: $('[data-section="' + section.id + '"]', nav)! };
+            return { ...record, [section.id]: $('a[data-section="' + section.id + '"]', nav)! };
         }, {} as Record<string, HTMLElement>);
 
         const activeBackground = $('.active-background', nav)!;
 
-        intersecting($$('section > h2, section > h1'), (entry) => {
-            const activeId = (nav.dataset.section = entry.target.parentElement!.id);
+        const setActiveSection = (activeId: string, scroll?: boolean) => {
+            if (scroll) $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+            window.history.pushState({}, '', activeId !== 'welcome' ? '/' + activeId : '/');
+
+            Object.values(links).forEach((link) => link.classList.remove('active'));
+            links[activeId].classList.add('active');
+            activeBackground.style.top = links[activeId].offsetTop + 'px';
+            activeBackground.style.height = links[activeId].offsetHeight + 'px';
+        };
+
+        nav.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = event.target as HTMLElement;
+            const link = target.tagName === 'A' ? target : target.closest('a');
+            if (!link) return;
+            setActiveSection(link.dataset.section!, true);
+        });
+
+        intersecting($$('[data-anchor-id]'), (entry) => {
+            const activeId = (nav.dataset.section = (entry.target as HTMLElement).dataset.anchorId!);
             if (entry.isIntersecting) {
-                Object.values(links).forEach((link) => link.classList.remove('active'));
-                links[activeId].classList.add('active');
-                activeBackground.style.top = links[activeId].offsetTop + 'px';
-                activeBackground.style.height = links[activeId].offsetHeight + 'px';
+                setActiveSection(activeId);
             }
         });
     }

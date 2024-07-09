@@ -75,11 +75,12 @@
         <div class="sections" style="display: none">
             <nav tabindex="1" data-active="welcome">
                 <% for(const link of navigation) { %>
-                <a href="#<%= link.id %>" data-section="<%= link.id %>"><span><%= link.title %></span></a>
+                <a href="/<%= link.id %>" data-section="<%= link.id %>"><span><%= link.title %></span></a>
                 <% } %>
                 <div class="active-background"></div>
             </nav>
             <section id="welcome">
+                <div data-anchor-id="welcome"></div>
                 <h1>
                     <svg class="i-am" viewBox="0 0 219 90" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -105,6 +106,7 @@
                 </div>
             </section>
             <section id="skills">
+                <div data-anchor-id="skills"></div>
                 <h2>Skills</h2>
                 <main>
                     <article>
@@ -115,8 +117,8 @@
                         </p>
                         <p>
                             Recently, I've been focused on React, TypeScript, Node.js, GraphQL, SCSS, and
-                            Tailwind CSS, but I'm also open to and enthusiastic about new roles that involve
-                            other technologies.
+                            Tailwind CSS, but I'm also enthusiastic about new roles that involve other
+                            technologies.
                         </p>
                     </article>
                     <div class="legend">
@@ -160,13 +162,13 @@
                 </main>
             </section>
             <section id="projects">
+                <div data-anchor-id="projects"></div>
                 <h2>Side Projects</h2>
                 <main>
                     <article class="intro">
                         <p>
-                            The following are some or my the side projects I work on to demonstrate
-                            capability, create some rudimentary AI from scratch, get more familiar with
-                            sockets, or play wordle whenever I want.
+                            I work on side projects to demonstrate my capabilities, create rudimentary AI from
+                            scratch, get more familiar with sockets, and play Wordle whenever I want.
                         </p>
                     </article>
                     <% for(const project of projects) { %>
@@ -190,6 +192,7 @@
                 </main>
             </section>
             <section id="contact">
+                <div data-anchor-id="contact"></div>
                 <h2>Contact</h2>
                 <main>
                     <article>
@@ -222,8 +225,8 @@
                 </main>
             </section>
             <section id="recruiters" data-state="intro">
+                <div data-anchor-id="recruiters"></div>
                 <h2>Recruiters</h2>
-
                 <main>
                     <article class="intro">
                         <p>

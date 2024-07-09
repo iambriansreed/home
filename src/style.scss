@@ -323,9 +323,10 @@ h4 {
         }
 
         a {
+            cursor: pointer;
             width: 2rem;
             display: block;
-            color: var(--foreground);
+            color: white;
             transition: color 0.25s ease-in-out;
             text-decoration: none;
             position: relative;
@@ -350,22 +351,33 @@ h4 {
             right: 0;
             top: 0;
             min-width: 2px;
-            background: var(--background);
+            background: var(--foreground-10);
             z-index: -1;
             transition: all 0.125s linear;
         }
     }
 
     & > section {
+        position: relative;
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        padding: 2rem;
+        padding: 3rem 2rem;
         align-items: center;
         max-width: 1000px;
         margin: 0 auto;
+        gap: 2rem;
+
+        [data-anchor-id] {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 1px;
+            width: 1px;
+        }
 
         main {
+            position: relative;
             display: flex;
             flex-direction: column;
             row-gap: 1rem;
@@ -770,6 +782,7 @@ h4 {
 #recruiters {
     min-height: 100vh;
     position: relative;
+    margin-bottom: 3rem;
 
     .intro {
         justify-content: center;
@@ -857,8 +870,9 @@ h4 {
                 flex-direction: column;
 
                 p {
-                    padding-top: 0.5rem;
+                    padding: 0.5rem 0 0.5rem;
                 }
+
                 .fail-reason {
                     display: none;
                     color: tomato;
@@ -892,10 +906,10 @@ h4 {
                     input[type='radio'] {
                         flex-shrink: 0;
                     }
+                }
 
-                    & + p {
-                        margin-bottom: 1rem;
-                    }
+                label + p {
+                    //
                 }
             }
         }
@@ -943,5 +957,7 @@ body > footer {
     padding: 1rem;
     line-height: 1.2;
     background: #121212;
+    margin-top: -3rem;
+    height: 3rem;
     outline: var(--background-75) solid 2px;
 }
