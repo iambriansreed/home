@@ -36,47 +36,51 @@ async function main() {
     const scrollElement = document.location.hash && $(document.location.hash);
     if (scrollElement) scrollElement.scrollIntoView({ behavior: 'smooth' });
 
-    intersecting(
-        '#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset',
-        (entry, observer) => {
+    // toggleVisibility
+
+    {
+        const toggleVisibilityElements = $$('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset');
+        toggleVisibilityElements.forEach((element) => element.classList.add('invisible'));
+
+        intersecting(toggleVisibilityElements, (entry, observer) => {
             if (entry.isIntersecting) {
+                entry.target.classList.remove('invisible');
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
-        },
-        {},
-        (element) => {
-            element.classList.add('toggle-visibility');
-        }
-    );
+        });
+    }
 
-    const nav = $('nav')!;
+    // nav
+    {
+        const nav = $('nav')!;
 
-    const links = data.navigation.reduce((record, section) => {
-        return { ...record, [section.id]: $('[data-section="' + section.id + '"]', nav)! };
-    }, {} as Record<string, HTMLElement>);
+        const links = data.navigation.reduce((record, section) => {
+            return { ...record, [section.id]: $('[data-section="' + section.id + '"]', nav)! };
+        }, {} as Record<string, HTMLElement>);
 
-    const activeBackground = $('.active-background', nav)!;
+        const activeBackground = $('.active-background', nav)!;
 
-    intersecting('section > h2, section > h1', (entry) => {
-        const activeId = (nav.dataset.section = entry.target.parentElement!.id);
-        if (entry.isIntersecting) {
-            Object.values(links).forEach((link) => link.classList.remove('active'));
-            links[activeId].classList.add('active');
-            activeBackground.style.top = links[activeId].offsetTop + 'px';
-            activeBackground.style.height = links[activeId].offsetHeight + 'px';
-        }
-    });
+        intersecting($$('section > h2, section > h1'), (entry) => {
+            const activeId = (nav.dataset.section = entry.target.parentElement!.id);
+            if (entry.isIntersecting) {
+                Object.values(links).forEach((link) => link.classList.remove('active'));
+                links[activeId].classList.add('active');
+                activeBackground.style.top = links[activeId].offsetTop + 'px';
+                activeBackground.style.height = links[activeId].offsetHeight + 'px';
+            }
+        });
 
-    window.addEventListener('scrollend', function () {
-        document.body.classList.remove('active');
-        nav.blur();
-    });
+        // window.addEventListener('scrollend', function () {
+        //     document.body.classList.remove('active');
+        //     nav.blur();
+        // });
 
-    window.addEventListener('scroll', function () {
-        document.body.classList.remove('active');
-        nav.blur();
-    });
+        // window.addEventListener('scroll', function () {
+        //     document.body.classList.remove('active');
+        //     nav.blur();
+        // });
+    }
 
     type ContactResponse = {
         email: string;

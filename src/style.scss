@@ -229,10 +229,13 @@ a {
     }
 }
 
-.toggle-visibility {
+.invisible,
+.visible {
     transition: opacity 1s ease-in-out;
-    opacity: 0.15;
 
+    &.invisible {
+        opacity: 0.15;
+    }
     &.visible {
         opacity: 1;
     }
@@ -938,6 +941,6 @@ body > footer {
     text-align: center;
     padding: 1rem;
     line-height: 1.2;
-    background: linear-gradient(0deg, var(--background), var(--background-75));
+    background: #121212;
     outline: var(--background-75) solid 2px;
 }

@@ -7,6 +7,7 @@ const data: {
     skills: { title: string; progress: number; years: number }[];
     projects: {
         title: string;
+        url: string;
         description: string;
         skills: string[];
         sources: { title: string; url: string }[];
@@ -69,14 +70,14 @@ const data: {
         { title: 'CSS', progress: 85, years: present - 2007 },
         { title: 'Tailwind', progress: 70, years: 4 },
         { title: 'SASS', progress: 65, years: 6 },
-        { title: 'Nunchucks', progress: 95, years: present - 1980 },
+        { title: 'Nunchucks', progress: 95, years: present - 1998 },
         { title: 'JavaScript', progress: 85, years: present - 2009 },
         { title: 'Angular', progress: 65, years: 3 },
         { title: 'Node.js', progress: 70, years: present - 2015 },
         { title: 'GraphQL', progress: 85, years: 7 },
         { title: 'Crane kick', progress: 70, years: present - 1984 },
         { title: 'TypeScript', progress: 76, years: present - 2015 },
-        { title: 'Bowstaff', progress: 15, years: present - 1980 },
+        { title: 'Bowstaff', progress: 15, years: present - 1998 },
         { title: 'Sass/SCSS', progress: 85, years: present - 2013 },
         { title: 'C#', progress: 55, years: 6 },
         { title: 'PHP', progress: 70, years: 7 },
@@ -88,6 +89,7 @@ const data: {
     projects: [
         {
             title: `Sordle`,
+            url: 'https://sordle.iambrian.com',
             description: `A wordle clone that uses a static backend. You can play as much as you want. When you're done, it gives you the definition(s) of the word.`,
             skills: ['TypeScript', 'SASS', 'Vite'],
             sources: [
@@ -96,13 +98,15 @@ const data: {
             ],
         },
         {
-            title: `Connect 4 - Human vs Robot`,
-            description: `Engage in a game of Connect 4 against a robot. I consistently improve the robot's abilities to ensure it offers a competitive experience that keeps you entertained.`,
+            title: `Connect 4`,
+            url: 'https://connect4.iambrian.com',
+            description: `Challenge yourself to a game of Connect 4 against a basic AI, designed to be competitive enough to keep you entertained while still being beatable.`,
             skills: ['TypeScript', 'SASS', 'Vite'],
             sources: [{ title: 'Frontend', url: 'https://github.com/iambriansreed/connect4' }],
         },
         {
             title: `Socket Chat`,
+            url: 'https://chat.iambrian.com',
             description: `A private chat application that ensures messages are only stored on the clients devices. It supports multiple rooms and only sends messages to the room the client is connected to. It leverages socket technology for real-time message transmission and employs a lightweight server to facilitate client connections.`,
             skills: ['TypeScript', 'SASS', 'Socket.io', 'Tailwind', 'Jest', 'Vite'],
             sources: [

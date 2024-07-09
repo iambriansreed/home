@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
         <meta
             name="description"
             content="Brian S. Reed is a frontend focused full stack engineer with over 15 years designing and developing software for the internet using React, TypeScript, and Node."
@@ -170,16 +172,19 @@
                     <% for(const project of projects) { %>
                     <article>
                         <h3><%= project.title %></h3>
+                        <p><a href="<%- project.url%>"><%= project.url %></a></p>
                         <p><%= project.description %></p>
                         <p><small><%- project.skills.join(', ') %></small></p>
-                        <p class="sources">
-                            <% for(const source of project.sources) { %>
-                            <span> / </span>
-                            <a target="_blank" href="<%= source.url %>"
-                                ><%- svg.github%> <%= source.title %></a
-                            >
-                            <% } %>
-                        </p>
+                        <footer>
+                            <div class="sources">
+                                <% for(const source of project.sources) { %>
+                                <span> / </span>
+                                <a target="_blank" href="<%= source.url %>"
+                                    ><%- svg.github%> <%= source.title %></a
+                                >
+                                <% } %>
+                            </div>
+                        </footer>
                     </article>
                     <% } %>
                 </main>
