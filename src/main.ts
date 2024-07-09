@@ -72,22 +72,22 @@ async function main() {
 
         const activeBackground = $('.active-background', nav)!;
 
-        const setActiveSection = (activeId: string, scroll?: boolean) => {
-            if (scroll) $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+        const setActiveSection = (activeId: string) => {
             window.history.pushState({}, '', activeId !== 'welcome' ? '/' + activeId : '/');
-
-            Object.values(links).forEach((link) => link.classList.remove('active'));
+            Object.entries(links).forEach(([sectionId, link]) =>
+                link.classList.toggle('active', sectionId === activeId)
+            );
             links[activeId].classList.add('active');
             activeBackground.style.top = links[activeId].offsetTop + 'px';
             activeBackground.style.height = links[activeId].offsetHeight + 'px';
         };
 
-        nav.addEventListener('click', (event) => {
-            event.preventDefault();
-            const target = event.target as HTMLElement;
-            const link = target.tagName === 'A' ? target : target.closest('a');
-            if (!link) return;
-            setActiveSection(link.dataset.section!, true);
+        Object.entries(links).forEach(([activeId, link]) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                setActiveSection(activeId);
+                $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+            });
         });
 
         intersecting($$('[data-anchor-id]'), (entry) => {
