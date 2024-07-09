@@ -51,38 +51,40 @@ async function main() {
         );
     }
 
+    let setActiveSection = (_sectionId: string) => {};
+
     // nav
     {
         const nav = $('nav')!;
+        const activeBackground = $('.active-background', nav)!;
 
         const links = data.navigation.reduce((record, section) => {
             return { ...record, [section.id]: $('a[data-section="' + section.id + '"]', nav)! };
         }, {} as Record<string, HTMLElement>);
 
-        const activeBackground = $('.active-background', nav)!;
+        setActiveSection = (sectionId: string) => {
+            window.history.pushState({}, '', sectionId !== 'welcome' ? '/' + sectionId : '/');
 
-        const setActiveSection = (activeId: string) => {
-            window.history.pushState({}, '', activeId !== 'welcome' ? '/' + activeId : '/');
             Object.entries(links).forEach(([sectionId, link]) =>
-                link.classList.toggle('active', sectionId === activeId)
+                link.classList.toggle('active', sectionId === sectionId)
             );
-            links[activeId].classList.add('active');
-            activeBackground.style.top = links[activeId].offsetTop + 'px';
-            activeBackground.style.height = links[activeId].offsetHeight + 'px';
+            links[sectionId].classList.add('active');
+            activeBackground.style.top = links[sectionId].offsetTop + 'px';
+            activeBackground.style.height = links[sectionId].offsetHeight + 'px';
         };
 
-        Object.entries(links).forEach(([activeId, link]) => {
+        Object.entries(links).forEach(([sectionId, link]) => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
-                setActiveSection(activeId);
-                $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+                setActiveSection(sectionId);
+                $('#' + sectionId)!.scrollIntoView({ behavior: 'instant' });
             });
         });
 
         intersecting($$('[data-anchor-id]'), (entry) => {
-            const activeId = (nav.dataset.section = (entry.target as HTMLElement).dataset.anchorId!);
+            const sectionId = (nav.dataset.section = (entry.target as HTMLElement).dataset.anchorId!);
             if (entry.isIntersecting) {
-                setActiveSection(activeId);
+                setActiveSection(sectionId);
             }
         });
 
@@ -90,10 +92,11 @@ async function main() {
             const initialSection = data.navigation.find(
                 ({ id }) => window.location.pathname.includes(id) || window.location.hash.includes(id)
             );
+
             if (initialSection) {
-                const activeId = initialSection?.id;
-                setActiveSection(activeId);
-                $('#' + activeId)!.scrollIntoView({ behavior: 'instant' });
+                const sectionId = initialSection?.id;
+                setActiveSection(sectionId);
+                $('#' + sectionId)!.scrollIntoView({ behavior: 'instant' });
             }
         }, 1);
     }
@@ -192,7 +195,8 @@ async function main() {
 
         $('[data-start-quiz]', recruiters)!.addEventListener('click', function () {
             setState('quiz');
-            window.location.hash = '#recruiters';
+            setActiveSection(recruiters.id);
+            recruiters.scrollIntoView({ behavior: 'instant' });
         });
 
         const fields = () =>
