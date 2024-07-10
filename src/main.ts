@@ -19,21 +19,9 @@ async function main() {
     $('.sections')!.removeAttribute('style');
     $('body > footer')!.removeAttribute('style');
 
-    // subtitles
-    {
-        function nextSubtitle(element: HTMLElement | null, lastElement?: Element) {
-            if (!element) return;
-            lastElement?.classList.add('hide');
-            element.classList.add('load');
-            setTimeout(() => nextSubtitle(element.previousElementSibling as HTMLElement, element), 750);
-        }
-
-        setTimeout(() => nextSubtitle($('#welcome ul li:last-child')), 500);
-    }
-
     // toggleVisibility
     {
-        const toggleVisibilityElements = $$('#skills li, .progress-bar, h2, h3, h4, article, svg, fieldset');
+        const toggleVisibilityElements = $$('#skills li, .progress-bar, h2, h3, h4, article, fieldset');
         toggleVisibilityElements.forEach((element) => element.classList.add('invisible'));
 
         intersecting(

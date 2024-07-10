@@ -23,7 +23,6 @@ const data: {
         'Senior Software Engineer',
         'Developer Advisor',
         'Senior Front End Engineer',
-        'UX Engineer',
     ],
     navigation: [
         {
