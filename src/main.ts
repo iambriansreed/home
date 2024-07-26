@@ -48,9 +48,12 @@ async function main() {
         let timeout: ReturnType<typeof setTimeout> | undefined;
         function toggleActiveDebounce(isActive: boolean | undefined = undefined) {
             timeout && clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                nav.classList.toggle('active', isActive);
-            }, 250);
+            timeout = setTimeout(
+                () => {
+                    nav.classList.toggle('active', isActive);
+                },
+                timeout ? 250 : 1
+            );
         }
 
         nav.addEventListener('click', (event) => {
