@@ -333,6 +333,18 @@ h4 {
     nav {
         --transition-duration: 0.2s;
 
+        animation: fade-in 1s ease-in-out forwards;
+        opacity: 0;
+        animation-delay: 1s;
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         position: fixed;
         top: 10%;
         right: 0;
