@@ -89,11 +89,12 @@
             </div>
         </div>
         <div class="sections" style="display: none">
-            <nav tabindex="1" data-active="welcome">
-                <% for(const link of navigation) { %>
-                <a href="/<%= link.id %>" data-section="<%= link.id %>"><span><%= link.title %></span></a>
-                <% } %>
-                <div class="active-background"></div>
+            <nav tabindex="1" data-section="<%= navigation[0].id %>">
+                <ol>
+                    <% for(const link of navigation) { %>
+                    <li data-section="<%= link.id %>"><a href="/<%= link.id %>"><%= link.title %></a></li>
+                    <% } %>
+                </ol>
             </nav>
             <section id="welcome">
                 <div data-anchor-id="welcome"></div>
@@ -164,15 +165,13 @@
                             data-progress="<%= skill.progress %>"
                         >
                             <h4>
-                                <span class="title"><%= skill.title %></span
-                                ><span class="years"
-                                    ><%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %></span
-                                >
+                                <span class="title"><%= skill.title %></span>
+                                <span class="years">
+                                    <%= skill.years + (skill.years === 1 ? ' yr' : ' yrs') %>
+                                </span>
                             </h4>
                             <div class="progress-bar">
-                                <%- `
-                                <div style="width: ${skill.progress}%"></div>
-                                ` %>
+                                <div <%- `style="width: ${skill.progress}%" ` %>></div>
                             </div>
                         </li>
                         <% } %>
@@ -200,9 +199,9 @@
                             <div class="sources">
                                 <% for(const source of project.sources) { %>
                                 <span> / </span>
-                                <a target="_blank" href="<%= source.url %>"
-                                    ><%- svg.github%> <%= source.title %></a
-                                >
+                                <a target="_blank" href="<%= source.url %>">
+                                    <%- svg.github%> <%= source.title %>
+                                </a>
                                 <% } %>
                             </div>
                         </footer>
@@ -310,9 +309,9 @@
                         <h3>Awesome! This might be a good fit!</h3>
                         <form method="dialog" class="send">
                             <fieldset class="email" id="send-email">
-                                <label for="send-email"
-                                    >One last step. Add your email and send me the results.</label
-                                >
+                                <label for="send-email">
+                                    One last step. Add your email and send me the results.
+                                </label>
                                 <input type="email" placeholder="Email" name="send-email" required />
                                 <p class="error-description">That email address doesn't seem right.</p>
                             </fieldset>
@@ -334,8 +333,8 @@
         <footer style="display: none">
             <p>
                 <a target="_blank" href="https://quotesondesign.com/brian-reed/">
-                    ”Everything is designed. Few things are designed well.“</a
-                >
+                    Everything is designed. Few things are designed well.
+                </a>
             </p>
         </footer>
         <script type="module" src="/src/main.ts"></script>

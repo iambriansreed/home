@@ -285,89 +285,13 @@ h4 {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding-left: 1.5rem;
+    padding: 0 3rem 0 1.5rem;
     width: 100%;
     background-color: #242424;
 
     @media screen and (max-width: 999px) {
         max-width: 100%;
-        padding-left: 2rem;
-    }
-
-    nav {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        padding: 1rem 1rem;
-        width: 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        opacity: 0.75;
-        transition: opacity 1s ease-in-out;
-        transition-delay: 2s;
-        gap: 1rem;
-        background-color: var(--foreground-05);
-        box-shadow: rgba(0, 0, 0, 0.25) 0 0 1rem;
-        animation: fade-in 1s ease-in-out forwards;
-        animation-delay: 1.5s;
-        transform: translateX(-2rem);
-
-        @keyframes fade-in {
-            0% {
-                transform: translateX(-2rem);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        @media screen and (max-width: 999px) {
-            left: 0.25rem;
-        }
-
-        &:focus-within {
-            transition: opacity 0.25s ease-in-out;
-            opacity: 1;
-            transition-delay: 0;
-        }
-
-        a {
-            cursor: pointer;
-            width: 2rem;
-            display: block;
-            color: white;
-            transition: color 0.25s ease-in-out;
-            text-decoration: none;
-            position: relative;
-            z-index: 1;
-            padding: 0.5rem 0.25rem;
-            transition-delay: 0;
-
-            &.active {
-                //
-            }
-
-            span {
-                writing-mode: vertical-rl;
-                transform: rotate(180deg);
-                display: block;
-            }
-        }
-
-        .active-background {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            min-width: 2px;
-            background: var(--foreground-10);
-            z-index: -1;
-            transition: all 0.125s linear;
-        }
+        padding: 0 3.5rem 0 2rem;
     }
 
     & > section {
@@ -375,7 +299,7 @@ h4 {
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        padding: 3rem 2rem;
+        padding: 3rem 0;
         align-items: center;
         max-width: 1000px;
         margin: 0 auto;
@@ -399,6 +323,94 @@ h4 {
 
         &.active {
             opacity: 1;
+        }
+
+        &:active {
+            outline: white solid 4.25rem inset;
+        }
+    }
+
+    nav {
+        --transition-duration: 0.2s;
+
+        position: fixed;
+        top: 10%;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem;
+        cursor: pointer;
+
+        transition: all var(--transition-duration) ease-in-out;
+
+        ol {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            pointer-events: all;
+            background-color: var(--background-95);
+            border: transparent solid 1px;
+            border-radius: var(--border-radius);
+            box-shadow: transparent 0 0 0.5rem;
+
+            transition: all var(--transition-duration) ease-in-out;
+
+            li {
+                border: solid 1px var(--foreground-50);
+                border-left: none;
+                border-right: none;
+                transition: all var(--transition-duration) ease-in-out;
+
+                a {
+                    display: block;
+                    height: 0;
+                    width: 0;
+                    min-width: 1rem;
+                    overflow: hidden;
+                    text-align: right;
+                    transition: all var(--transition-duration) ease-in-out, background-color 0.25s ease-in-out;
+                    text-decoration: none;
+                    color: white;
+                }
+
+                &.active {
+                    border-color: white;
+                    border-top-width: 2px;
+                    box-shadow: rgba(255, 255, 255, 0.87) 0 0 0.25rem;
+                }
+            }
+        }
+
+        -webkit-tap-highlight-color: transparent;
+
+        &.active {
+            margin-right: 0;
+
+            ol {
+                box-shadow: rgba(0, 0, 0, 0.5) 0 0 0.5rem;
+                border-color: var(--foreground-10);
+                gap: 0;
+                li {
+                    border-color: var(--foreground-05);
+                    box-shadow: none !important;
+
+                    &.active {
+                        background-color: var(--foreground-10);
+                    }
+
+                    a {
+                        display: block;
+                        width: 6.5rem;
+                        height: 2rem;
+                        padding: 0 1rem 0 1.5rem;
+                        line-height: 2rem;
+
+                        &:hover {
+                            background-color: var(--foreground-05);
+                        }
+                    }
+                }
+            }
         }
     }
 }

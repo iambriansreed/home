@@ -44,33 +44,47 @@ async function main() {
     // nav
     {
         const nav = $('nav')!;
-        const activeBackground = $('.active-background', nav)!;
 
-        const links = data.navigation.reduce((record, section) => {
-            return { ...record, [section.id]: $('a[data-section="' + section.id + '"]', nav)! };
-        }, {} as Record<string, HTMLElement>);
+        let timeout: ReturnType<typeof setTimeout> | undefined;
+        function toggleActiveDebounce(isActive: boolean | undefined = undefined) {
+            timeout && clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                nav.classList.toggle('active', isActive);
+            }, 250);
+        }
+
+        nav.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            toggleActiveDebounce();
+        });
+
+        nav.addEventListener('mouseenter', () => toggleActiveDebounce(true));
+        nav.addEventListener('mouseleave', () => toggleActiveDebounce(false));
+
+        const liElements = $$<HTMLLIElement>('li[data-section]', nav);
 
         setActiveSection = (sectionId: string) => {
             window.history.pushState({}, '', sectionId !== 'welcome' ? '/' + sectionId : '/');
-
-            Object.entries(links).forEach(([sectionId, link]) =>
-                link.classList.toggle('active', sectionId === sectionId)
-            );
-            links[sectionId].classList.add('active');
-            activeBackground.style.top = links[sectionId].offsetTop + 'px';
-            activeBackground.style.height = links[sectionId].offsetHeight + 'px';
+            liElements.forEach((element) => {
+                const elementSectionId = element.dataset.section!;
+                element.classList.toggle('active', elementSectionId === sectionId);
+            });
         };
 
-        Object.entries(links).forEach(([sectionId, link]) => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
+        liElements.forEach((li) => {
+            const sectionId = li.dataset.section!;
+            const link = li.firstElementChild as HTMLAnchorElement;
+
+            link.addEventListener('click', () => {
                 setActiveSection(sectionId);
-                $('#' + sectionId)!.scrollIntoView({ behavior: 'instant' });
+                $('#' + sectionId)!!.scrollIntoView({ behavior: 'instant' });
             });
         });
 
         intersecting($$('[data-anchor-id]'), (entry) => {
-            const sectionId = (nav.dataset.section = (entry.target as HTMLElement).dataset.anchorId!);
+            const sectionId = (entry.target as HTMLElement).dataset.anchorId!;
             if (entry.isIntersecting) {
                 setActiveSection(sectionId);
             }
@@ -85,7 +99,7 @@ async function main() {
                 const sectionId = initialSection?.id;
                 setActiveSection(sectionId);
                 $('#' + sectionId)!.scrollIntoView({ behavior: 'instant' });
-            }
+            } else setActiveSection('welcome');
         }, 1);
     }
 
