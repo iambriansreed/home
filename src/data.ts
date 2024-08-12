@@ -176,9 +176,9 @@ const data: {
             title: 'This role requires expert knowledge in:',
             answers: [
                 {
-                    title: 'Java',
+                    title: 'Java / Python',
                     failReason:
-                        'I am not an expert in Java. Did you mean JavaScript? I do have experience in other OOP languages, like C#.',
+                        'I am not an expert in Java or Python. I do have experience in other OOP languages, like C#.',
                 },
                 { title: 'React' },
                 { title: 'React Native' },
