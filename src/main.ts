@@ -67,12 +67,16 @@ async function main() {
         nav.addEventListener('mouseleave', () => toggleActiveDebounce(false));
 
         const liElements = $$<HTMLLIElement>('li[data-section]', nav);
+        const sectionElements = $$<HTMLElement>('.sections section');
 
         setActiveSection = (sectionId: string) => {
             window.history.pushState({}, '', sectionId !== 'welcome' ? '/' + sectionId : '/');
+
+            sectionElements.forEach((element) => {
+                element.classList.toggle('active', element.id === sectionId);
+            });
             liElements.forEach((element) => {
-                const elementSectionId = element.dataset.section!;
-                element.classList.toggle('active', elementSectionId === sectionId);
+                element.classList.toggle('active', element.dataset.section! === sectionId);
             });
         };
 
